@@ -1,0 +1,23 @@
+{
+  "name": "emiberea.fii-dissertation-edua",
+  "homepage": "https://github.com/emiberea/fii-dissertation",
+  "authors": [
+    "Emi Berea <emi.berea@gmail.com>"
+  ],
+  "description": "Manage front-end frameworks and libraries",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7"
+  }
+}
