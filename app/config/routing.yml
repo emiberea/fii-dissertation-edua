@@ -1,13 +1,9 @@
-eb_user:
-    resource: "@EBUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 eb_core:
     resource: "@EBCoreBundle/Controller/"
     type:     annotation
     prefix:   /
 
-app:
-    resource: "@AppBundle/Controller/"
+eb_user:
+    resource: "@EBUserBundle/Controller/"
     type:     annotation
+    prefix:   /

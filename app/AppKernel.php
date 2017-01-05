@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             // application bundles
-            new AppBundle\AppBundle(),
             new EB\CoreBundle\EBCoreBundle(),
             new EB\UserBundle\EBUserBundle(),
         );
