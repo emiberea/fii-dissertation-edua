@@ -29,6 +29,6 @@ pugx_multi_user:
                 template: EBUserBundle:RegistrationStudentUser:register.html.twig
             profile:
                 form:
-                    type: EB\UserBundle\Form\Type\ProfileType
-                    name: eb_user_profile
+                    type: EB\UserBundle\Form\Type\StudentUserProfileType
+                    name: eb_user_student_user_profile
                     validation_groups: [Profile, Default]
