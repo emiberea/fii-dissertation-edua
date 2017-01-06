@@ -1,0 +1,8 @@
+# FOSUserBundle configuration
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: EB\UserBundle\Entity\User
+    registration:
+        form:
+            type: EB\UserBundle\Form\Type\RegistrationType
