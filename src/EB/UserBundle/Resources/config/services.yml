@@ -3,3 +3,8 @@ services:
         class: EB\UserBundle\Form\Type\RegistrationType
         tags:
             - { name: form.type, alias: eb_user_registration }
+
+    eb_user.profile.form.type:
+        class: EB\UserBundle\Form\Type\ProfileType
+        tags:
+            - { name: form.type, alias: eb_user_profile }

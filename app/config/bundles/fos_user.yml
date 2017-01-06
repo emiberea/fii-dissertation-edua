@@ -6,3 +6,6 @@ fos_user:
     registration:
         form:
             type: EB\UserBundle\Form\Type\RegistrationType
+    profile:
+        form:
+            type: EB\UserBundle\Form\Type\ProfileType
