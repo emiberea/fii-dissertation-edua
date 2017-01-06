@@ -2,9 +2,11 @@
 
 namespace EB\UserBundle\Form\Type;
 
+use EB\UserBundle\Entity\StudentUser;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class RegistrationType extends AbstractType
@@ -28,6 +30,16 @@ class RegistrationType extends AbstractType
             ))
         ;
     }
+
+//    public function configureOptions(OptionsResolver $resolver)
+//    {
+//        $resolver->setDefaults(array(
+//            'data_class' => StudentUser::class,
+//            'csrf_token_id' => 'registration',
+//            // BC for SF < 2.8
+//            'intention' => 'registration',
+//        ));
+//    }
 
     /**
      * @return string

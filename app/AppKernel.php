@@ -19,6 +19,7 @@ class AppKernel extends Kernel
 
             // 3rd party bundles
             new FOS\UserBundle\FOSUserBundle(),
+            new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
 
             // application bundles
             new EB\CoreBundle\EBCoreBundle(),

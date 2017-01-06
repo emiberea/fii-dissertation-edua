@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "473d51b2cfe08b7b5092478f3c217790",
-    "content-hash": "bc3f824452919683ee1f1b4365a0bed4",
+    "hash": "55b4752cdff37092a20d1f6d5c0f0d2f",
+    "content-hash": "1a61961af86603f02d6439d8f11a4667",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1107,6 +1107,62 @@
                 "psr-3"
             ],
             "time": "2016-10-10 12:19:37"
+        },
+        {
+            "name": "pugx/multi-user-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PUGX/PUGXMultiUserBundle.git",
+                "reference": "e0af577b221ca74e07a09629f5617bb2a152ce53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PUGX/PUGXMultiUserBundle/zipball/e0af577b221ca74e07a09629f5617bb2a152ce53",
+                "reference": "e0af577b221ca74e07a09629f5617bb2a152ce53",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.2",
+                "doctrine/doctrine-bundle": "~1.2",
+                "friendsofsymfony/user-bundle": "2.0.*@dev",
+                "symfony/framework-bundle": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PUGX\\MultiUserBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Proietti",
+                    "email": "leonardo.proietti@gmail.com"
+                },
+                {
+                    "name": "Community",
+                    "homepage": "https://github.com/PUGX/PUGXMultiUserBundle/contributors"
+                }
+            ],
+            "description": "Symfony PUGXMultiUserBundle",
+            "homepage": "https://github.com/PUGX",
+            "keywords": [
+                "User management",
+                "multi user management"
+            ],
+            "time": "2016-11-02 08:35:04"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -2259,7 +2315,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "friendsofsymfony/user-bundle": 10
+        "friendsofsymfony/user-bundle": 10,
+        "pugx/multi-user-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

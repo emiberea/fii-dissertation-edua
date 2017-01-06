@@ -1,0 +1,34 @@
+# PUGXMultiUserBundle configuration
+pugx_multi_user:
+    users:
+        admin_user:
+            entity:
+                class: EB\UserBundle\Entity\AdminUser
+        school_staff_user:
+            entity:
+                class: EB\UserBundle\Entity\SchoolStaffUser
+            registration:
+                form:
+                    type: EB\UserBundle\Form\Type\RegistrationType
+                    name: eb_user_registration
+                    validation_groups: [Registration, Default]
+                template: EBUserBundle:RegistrationSchoolStaffUser:register.html.twig
+            profile:
+                form:
+                    type: EB\UserBundle\Form\Type\ProfileType
+                    name: eb_user_profile
+                    validation_groups: [Profile, Default]
+        student_user:
+            entity:
+                class: EB\UserBundle\Entity\StudentUser
+            registration:
+                form:
+                    type: EB\UserBundle\Form\Type\RegistrationType
+                    name: eb_user_registration
+                    validation_groups: [Registration, Default]
+                template: EBUserBundle:RegistrationStudentUser:register.html.twig
+            profile:
+                form:
+                    type: EB\UserBundle\Form\Type\ProfileType
+                    name: eb_user_profile
+                    validation_groups: [Profile, Default]

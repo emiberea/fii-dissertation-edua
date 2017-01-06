@@ -9,9 +9,17 @@ use FOS\UserBundle\Model\User as BaseUser;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="EB\UserBundle\Repository\UserRepository")
+ * @ORM\Entity
+ *
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({
+ *     "admin_user" = "EB\UserBundle\Entity\AdminUser",
+ *     "school_staff_user" = "EB\UserBundle\Entity\SchoolStaffUser",
+ *     "student_user" = "EB\UserBundle\Entity\StudentUser"
+ * })
  */
-class User extends BaseUser
+abstract class AbstractUser extends BaseUser
 {
     /**
      * @var int
