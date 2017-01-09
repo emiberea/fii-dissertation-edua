@@ -2,3 +2,21 @@ services:
 #    eb_admin.example:
 #        class: EB\AdminBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    eb_admin.admin_user:
+        class: EB\AdminBundle\Admin\AdminUserAdmin
+        arguments: [~, EB\UserBundle\Entity\AdminUser, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: AdminUser }
+
+    eb_admin.school_staff_user:
+        class: EB\AdminBundle\Admin\SchoolStaffUserAdmin
+        arguments: [~, EB\UserBundle\Entity\SchoolStaffUser, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: SchoolStaffUser }
+
+    eb_admin.student_user:
+        class: EB\AdminBundle\Admin\StudentUserAdmin
+        arguments: [~, EB\UserBundle\Entity\StudentUser, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: StudentUser }
