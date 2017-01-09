@@ -4,6 +4,8 @@ imports:
     - { resource: services.yml }
     - { resource: bundles/fos_user.yml }
     - { resource: bundles/pugx_multi_user.yml }
+    - { resource: bundles/sonata_block.yml }
+    - { resource: "@EBAdminBundle/Resources/config/services.yml" }
     - { resource: "@EBCoreBundle/Resources/config/services.yml" }
     - { resource: "@EBUserBundle/Resources/config/services.yml" }
 
