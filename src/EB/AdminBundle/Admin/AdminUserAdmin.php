@@ -15,6 +15,7 @@ class AdminUserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('id')
             ->add('firstName', 'text')
             ->add('lastName', 'text')
         ;
@@ -26,6 +27,7 @@ class AdminUserAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('id')
             ->add('firstName')
             ->add('lastName')
         ;
@@ -37,6 +39,7 @@ class AdminUserAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('id')
             ->addIdentifier('firstName')
             ->addIdentifier('lastName')
         ;

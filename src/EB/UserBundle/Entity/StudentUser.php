@@ -28,63 +28,63 @@ class StudentUser extends AbstractUser
     /**
      * @var string
      *
-     * @ORM\Column(name="father_initial", type="string", length=255)
+     * @ORM\Column(name="father_initial", type="string", length=255, nullable=true)
      */
     private $fatherInitial;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pin", type="string", length=255)
+     * @ORM\Column(name="pin", type="string", length=255, nullable=true)
      */
     private $pin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="high_school", type="string", length=255)
+     * @ORM\Column(name="high_school", type="string", length=255, nullable=true)
      */
     private $highSchool;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="specialization", type="string", length=255)
+     * @ORM\Column(name="specialization", type="string", length=255, nullable=true)
      */
     private $specialization;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="admission_exam_grade", type="decimal", precision=4, scale=2)
+     * @ORM\Column(name="admission_exam_grade", type="decimal", precision=4, scale=2, nullable=true)
      */
     private $admissionExamGrade;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="baccalaureate_average_grade", type="decimal", precision=4, scale=2)
+     * @ORM\Column(name="baccalaureate_average_grade", type="decimal", precision=4, scale=2, nullable=true)
      */
     private $baccalaureateAverageGrade;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="baccalaureate_maximum_grade", type="decimal", precision=4, scale=2)
+     * @ORM\Column(name="baccalaureate_maximum_grade", type="decimal", precision=4, scale=2, nullable=true)
      */
     private $baccalaureateMaximumGrade;
 

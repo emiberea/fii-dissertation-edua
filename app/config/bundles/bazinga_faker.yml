@@ -1,0 +1,3 @@
+# BazingaFakerBundle configuration
+bazinga_faker:
+    orm: doctrine

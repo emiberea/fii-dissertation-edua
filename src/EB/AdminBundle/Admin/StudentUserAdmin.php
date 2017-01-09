@@ -15,6 +15,7 @@ class StudentUserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('id')
             ->add('firstName', 'text')
             ->add('lastName', 'text')
             ->add('fatherInitial')
@@ -35,6 +36,7 @@ class StudentUserAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('id')
             ->add('firstName')
             ->add('lastName')
             ->add('fatherInitial')
@@ -55,17 +57,18 @@ class StudentUserAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('id')
             ->addIdentifier('firstName')
             ->addIdentifier('lastName')
-            ->add('fatherInitial')
-            ->add('pin')
-            ->add('city')
-            ->add('address')
-            ->add('highSchool')
-            ->add('specialization')
-            ->add('admissionExamGrade')
-            ->add('baccalaureateAverageGrade')
-            ->add('baccalaureateMaximumGrade')
+            ->addIdentifier('fatherInitial')
+            ->addIdentifier('pin')
+            ->addIdentifier('city')
+            ->addIdentifier('address')
+            ->addIdentifier('highSchool')
+            ->addIdentifier('specialization')
+            ->addIdentifier('admissionExamGrade')
+            ->addIdentifier('baccalaureateAverageGrade')
+            ->addIdentifier('baccalaureateMaximumGrade')
         ;
     }
 }
