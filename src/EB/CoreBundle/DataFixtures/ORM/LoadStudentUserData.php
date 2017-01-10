@@ -32,8 +32,6 @@ class LoadStudentUserData extends BaseFixture implements OrderedFixtureInterface
             $k = array_rand(FixtureConfig::$specialisationArr);
             $studentUser->setSpecialization(FixtureConfig::$specialisationArr[$k]);
 
-            $studentUser->setAdmissionExamGrade($this->getFaker()->randomNumber(1));
-            $studentUser->setAdmissionExamGrade($this->getFaker()->randomNumber(1));
             $studentUser->setBaccalaureateAverageGrade($this->getFaker()->randomNumber(1));
             $studentUser->setBaccalaureateMaximumGrade($this->getFaker()->randomNumber(1));
 

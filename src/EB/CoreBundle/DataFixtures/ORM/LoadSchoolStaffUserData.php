@@ -22,6 +22,9 @@ class LoadSchoolStaffUserData extends BaseFixture implements OrderedFixtureInter
             $schoolStaffUser->setEnabled(true);
             $schoolStaffUser->setFirstName($this->getFaker()->firstName);
             $schoolStaffUser->setLastName($this->getFaker()->lastName);
+            $schoolStaffUser->setTitle($this->getFaker()->title);
+            $schoolStaffUser->setJobTitle($this->getFaker()->jobTitle);
+            $schoolStaffUser->setAcademicDegree($this->getFaker()->text(20));
 
             $this->addReference('school-staff-user-' . $i, $schoolStaffUser);
             $manager->persist($schoolStaffUser);

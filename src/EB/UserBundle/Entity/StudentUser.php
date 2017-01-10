@@ -2,7 +2,9 @@
 
 namespace EB\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use EB\CoreBundle\Entity\AdmissionAttendee;
 use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 
 /**
@@ -70,13 +72,6 @@ class StudentUser extends AbstractUser
     /**
      * @var float
      *
-     * @ORM\Column(name="admission_exam_grade", type="decimal", precision=4, scale=2, nullable=true)
-     */
-    private $admissionExamGrade;
-
-    /**
-     * @var float
-     *
      * @ORM\Column(name="baccalaureate_average_grade", type="decimal", precision=4, scale=2, nullable=true)
      */
     private $baccalaureateAverageGrade;
@@ -87,6 +82,13 @@ class StudentUser extends AbstractUser
      * @ORM\Column(name="baccalaureate_maximum_grade", type="decimal", precision=4, scale=2, nullable=true)
      */
     private $baccalaureateMaximumGrade;
+
+    /**
+     * @var ArrayCollection|AdmissionAttendee[]
+     *
+     * @ORM\OneToMany(targetEntity="EB\CoreBundle\Entity\AdmissionAttendee", mappedBy="studentUser")
+     */
+    private $admissionAttendees;
 
     /**
      * @return string
@@ -205,25 +207,6 @@ class StudentUser extends AbstractUser
     /**
      * @return float
      */
-    public function getAdmissionExamGrade()
-    {
-        return $this->admissionExamGrade;
-    }
-
-    /**
-     * @param float $admissionExamGrade
-     * @return $this
-     */
-    public function setAdmissionExamGrade($admissionExamGrade)
-    {
-        $this->admissionExamGrade = $admissionExamGrade;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
     public function getBaccalaureateAverageGrade()
     {
         return $this->baccalaureateAverageGrade;
@@ -255,6 +238,36 @@ class StudentUser extends AbstractUser
     public function setBaccalaureateMaximumGrade($baccalaureateMaximumGrade)
     {
         $this->baccalaureateMaximumGrade = $baccalaureateMaximumGrade;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|AdmissionAttendee[]
+     */
+    public function getAdmissionAttendees()
+    {
+        return $this->admissionAttendees;
+    }
+
+    /**
+     * @param AdmissionAttendee $admissionAttendee
+     * @return $this
+     */
+    public function addAdmissionAttendee($admissionAttendee)
+    {
+        $this->admissionAttendees->add($admissionAttendee);
+
+        return $this;
+    }
+
+    /**
+     * @param AdmissionAttendee $admissionAttendee
+     * @return $this
+     */
+    public function removeAdmissionAttendee($admissionAttendee)
+    {
+        $this->admissionAttendees->removeElement($admissionAttendee);
 
         return $this;
     }

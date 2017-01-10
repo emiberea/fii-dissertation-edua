@@ -2,7 +2,9 @@
 
 namespace EB\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use EB\UserBundle\Entity\SchoolStaffUser;
 
 /**
  * School
@@ -33,6 +35,13 @@ class School
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
 
     /**
      * @var string
@@ -69,6 +78,24 @@ class School
      */
     private $type;
 
+    /**
+     * @var ArrayCollection|SchoolStaffUser[]
+     *
+     * @ORM\OneToMany(targetEntity="EB\UserBundle\Entity\SchoolStaffUser", mappedBy="school")
+     */
+    private $schoolStaffUsers;
+
+    /**
+     * @var ArrayCollection|Admission[]
+     *
+     * @ORM\OneToMany(targetEntity="EB\CoreBundle\Entity\Admission", mappedBy="school")
+     */
+    private $admissions;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * @return integer
@@ -76,6 +103,25 @@ class School
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     * @return $this
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     /**
@@ -169,6 +215,66 @@ class School
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|Admission[]
+     */
+    public function getAdmissions()
+    {
+        return $this->admissions;
+    }
+
+    /**
+     * @param Admission $admission
+     * @return $this
+     */
+    public function addAdmission($admission)
+    {
+        $this->admissions->add($admission);
+
+        return $this;
+    }
+
+    /**
+     * @param Admission $admission
+     * @return $this
+     */
+    public function removeAdmission($admission)
+    {
+        $this->admissions->removeElement($admission);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|SchoolStaffUser[]
+     */
+    public function getSchoolStaffUsers()
+    {
+        return $this->schoolStaffUsers;
+    }
+
+    /**
+     * @param SchoolStaffUser $schoolStaffUser
+     * @return $this
+     */
+    public function addSchoolStaffUser($schoolStaffUser)
+    {
+        $this->schoolStaffUsers->add($schoolStaffUser);
+
+        return $this;
+    }
+
+    /**
+     * @param SchoolStaffUser $schoolStaffUser
+     * @return $this
+     */
+    public function removeSchoolStaffUser($schoolStaffUser)
+    {
+        $this->schoolStaffUsers->removeElement($schoolStaffUser);
 
         return $this;
     }

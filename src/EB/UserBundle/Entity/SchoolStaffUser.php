@@ -3,6 +3,7 @@
 namespace EB\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use EB\CoreBundle\Entity\School;
 use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 
 /**
@@ -16,6 +17,14 @@ use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
  */
 class SchoolStaffUser extends AbstractUser
 {
+    const TITLE_MALE = 'mr';
+    const TITLE_FEMALE = 'ms';
+
+    public static $titleArr = [
+        self::TITLE_MALE => 'Mr.',
+        self::TITLE_FEMALE => 'Ms.',
+    ];
+
     /**
      * @var int
      *
@@ -24,4 +33,108 @@ class SchoolStaffUser extends AbstractUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="job_title", type="string", length=255)
+     */
+    private $jobTitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="academic_degree", type="string", length=255, nullable=true)
+     */
+    private $academicDegree;
+
+    /**
+     * @var School
+     *
+     * @ORM\ManyToOne(targetEntity="EB\CoreBundle\Entity\School", inversedBy="schoolStaffUsers")
+     */
+    private $school;
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getJobTitle()
+    {
+        return $this->jobTitle;
+    }
+
+    /**
+     * @param string $jobTitle
+     * @return $this
+     */
+    public function setJobTitle($jobTitle)
+    {
+        $this->jobTitle = $jobTitle;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAcademicDegree()
+    {
+        return $this->academicDegree;
+    }
+
+    /**
+     * @param string $academicDegree
+     * @return $this
+     */
+    public function setAcademicDegree($academicDegree)
+    {
+        $this->academicDegree = $academicDegree;
+
+        return $this;
+    }
+
+    /**
+     * @return School
+     */
+    public function getSchool()
+    {
+        return $this->school;
+    }
+
+    /**
+     * @param School $school
+     * @return $this
+     */
+    public function setSchool($school)
+    {
+        $this->school = $school;
+
+        return $this;
+    }
 }
