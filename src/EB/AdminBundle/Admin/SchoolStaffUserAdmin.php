@@ -16,8 +16,12 @@ class SchoolStaffUserAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('id')
-            ->add('firstName', 'text')
-            ->add('lastName', 'text')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('title')
+            ->add('jobTitle')
+            ->add('academicDegree')
+            ->add('school')
         ;
     }
 
@@ -30,6 +34,10 @@ class SchoolStaffUserAdmin extends AbstractAdmin
             ->add('id')
             ->add('firstName')
             ->add('lastName')
+            ->add('title')
+            ->add('jobTitle')
+            ->add('academicDegree')
+            ->add('school')
         ;
     }
 
@@ -40,8 +48,12 @@ class SchoolStaffUserAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
-            ->addIdentifier('firstName')
-            ->addIdentifier('lastName')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('title')
+            ->add('jobTitle')
+            ->add('academicDegree')
+            ->add('school')
         ;
     }
 }

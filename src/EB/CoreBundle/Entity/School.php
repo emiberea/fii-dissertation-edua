@@ -97,6 +97,11 @@ class School
         $this->createdAt = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return $this->name . ' ' . $this->city;
+    }
+
     /**
      * @return integer
      */
@@ -217,6 +222,14 @@ class School
         $this->type = $type;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeAsString()
+    {
+        return self::$typeArr[$this->type];
     }
 
     /**

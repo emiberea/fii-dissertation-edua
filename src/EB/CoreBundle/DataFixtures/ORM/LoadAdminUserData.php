@@ -36,6 +36,6 @@ class LoadAdminUserData extends BaseFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 1;
+        return 2;
     }
 }

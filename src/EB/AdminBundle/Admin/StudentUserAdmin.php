@@ -16,15 +16,14 @@ class StudentUserAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('id')
-            ->add('firstName', 'text')
-            ->add('lastName', 'text')
+            ->add('firstName')
+            ->add('lastName')
             ->add('fatherInitial')
             ->add('pin')
             ->add('city')
             ->add('address')
             ->add('highSchool')
             ->add('specialization')
-            ->add('admissionExamGrade')
             ->add('baccalaureateAverageGrade')
             ->add('baccalaureateMaximumGrade')
         ;
@@ -45,7 +44,6 @@ class StudentUserAdmin extends AbstractAdmin
             ->add('address')
             ->add('highSchool')
             ->add('specialization')
-            ->add('admissionExamGrade')
             ->add('baccalaureateAverageGrade')
             ->add('baccalaureateMaximumGrade')
         ;
@@ -58,17 +56,16 @@ class StudentUserAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
-            ->addIdentifier('firstName')
-            ->addIdentifier('lastName')
-            ->addIdentifier('fatherInitial')
-            ->addIdentifier('pin')
-            ->addIdentifier('city')
-            ->addIdentifier('address')
-            ->addIdentifier('highSchool')
-            ->addIdentifier('specialization')
-            ->addIdentifier('admissionExamGrade')
-            ->addIdentifier('baccalaureateAverageGrade')
-            ->addIdentifier('baccalaureateMaximumGrade')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('fatherInitial')
+            ->add('pin')
+            ->add('city')
+            ->add('address')
+            ->add('highSchool')
+            ->add('specialization')
+            ->add('baccalaureateAverageGrade')
+            ->add('baccalaureateMaximumGrade')
         ;
     }
 }

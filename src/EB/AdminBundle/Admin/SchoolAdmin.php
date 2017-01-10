@@ -2,12 +2,14 @@
 
 namespace EB\AdminBundle\Admin;
 
+use EB\CoreBundle\Entity\School;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class AdminUserAdmin extends AbstractAdmin
+class SchoolAdmin extends AbstractAdmin
 {
     /**
      * @param FormMapper $formMapper
@@ -15,9 +17,13 @@ class AdminUserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('firstName', 'text')
-            ->add('lastName', 'text')
+            ->add('name')
+            ->add('country')
+            ->add('city')
+            ->add('address')
+            ->add('type', ChoiceType::class, [
+                'choices' => School::$typeArr,
+            ])
         ;
     }
 
@@ -28,8 +34,11 @@ class AdminUserAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('firstName')
-            ->add('lastName')
+            ->add('name')
+            ->add('country')
+            ->add('city')
+            ->add('address')
+            ->add('type')
         ;
     }
 
@@ -40,8 +49,13 @@ class AdminUserAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('firstName')
-            ->add('lastName')
+            ->add('name')
+            ->add('country')
+            ->add('city')
+            ->add('address')
+            ->add('getTypeAsString', 'string', [
+                'label' => 'Type',
+            ])
         ;
     }
 }
