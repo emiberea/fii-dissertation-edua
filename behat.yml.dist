@@ -1,0 +1,12 @@
+default:
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
+    autoload:
+        '': %paths.base%/features # %paths.base% is a special variable in behat.yml that refers to the folder in which behat.yml is stored.
+    suites:
+        default:
+            contexts: [Context\FeatureContext]

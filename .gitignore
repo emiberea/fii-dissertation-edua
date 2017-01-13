@@ -11,4 +11,5 @@
 /vendor/
 /bin/
 /composer.phar
+/behat.yml
 /.idea/
