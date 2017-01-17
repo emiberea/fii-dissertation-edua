@@ -15,7 +15,7 @@ class SchoolStaffUserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
+            ->add('email')
             ->add('firstName')
             ->add('lastName')
             ->add('title')
@@ -32,6 +32,7 @@ class SchoolStaffUserAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
+            ->add('email')
             ->add('firstName')
             ->add('lastName')
             ->add('title')
@@ -48,6 +49,7 @@ class SchoolStaffUserAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('email')
             ->add('firstName')
             ->add('lastName')
             ->add('title')

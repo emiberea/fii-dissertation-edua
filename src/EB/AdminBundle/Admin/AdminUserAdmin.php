@@ -16,6 +16,7 @@ class AdminUserAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('id')
+            ->add('email')
             ->add('firstName', 'text')
             ->add('lastName', 'text')
         ;
@@ -28,6 +29,7 @@ class AdminUserAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
+            ->add('email')
             ->add('firstName')
             ->add('lastName')
         ;
@@ -40,6 +42,7 @@ class AdminUserAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('email')
             ->add('firstName')
             ->add('lastName')
         ;

@@ -25,7 +25,6 @@ class StudentUserProfileType extends AbstractType
             ->add('address')
             ->add('highSchool')
             ->add('specialization')
-            ->add('admissionExamGrade')
             ->add('baccalaureateAverageGrade')
             ->add('baccalaureateMaximumGrade')
         ;
