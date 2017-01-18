@@ -1,8 +1,4 @@
 services:
-#    eb_admin.example:
-#        class: EB\AdminBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
-
     eb_admin.admin_user:
         class: EB\AdminBundle\Admin\AdminUserAdmin
         arguments: [~, EB\UserBundle\Entity\AdminUser, ~]

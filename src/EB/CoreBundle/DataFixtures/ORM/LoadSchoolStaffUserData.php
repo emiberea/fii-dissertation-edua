@@ -26,7 +26,7 @@ class LoadSchoolStaffUserData extends BaseFixture implements OrderedFixtureInter
             $schoolStaffUser->setJobTitle($this->getFaker()->jobTitle);
             $schoolStaffUser->setAcademicDegree($this->getFaker()->text(20));
 
-            $randomSchoolNo = mt_rand(0, count(FixtureConfig::$schoolArr)); // number between 0 and max (0, max]
+            $randomSchoolNo = mt_rand(1, count(FixtureConfig::$schoolArr)); // number between 0 and max (0, max]
             $schoolStaffUser->setSchool($this->getReference('school-' . $randomSchoolNo));
 
             $this->addReference('school-staff-user-' . $i, $schoolStaffUser);

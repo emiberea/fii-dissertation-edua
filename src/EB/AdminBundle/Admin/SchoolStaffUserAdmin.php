@@ -2,6 +2,7 @@
 
 namespace EB\AdminBundle\Admin;
 
+use FOS\UserBundle\Util\LegacyFormHelper;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -22,6 +23,14 @@ class SchoolStaffUserAdmin extends AbstractAdmin
             ->add('jobTitle')
             ->add('academicDegree')
             ->add('school')
+            ->add('enabled')
+            ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
+                'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
+                'options' => array('translation_domain' => 'FOSUserBundle'),
+                'first_options' => array('label' => 'form.password'),
+                'second_options' => array('label' => 'form.password_confirmation'),
+                'invalid_message' => 'fos_user.password.mismatch',
+            ))
         ;
     }
 
@@ -39,6 +48,7 @@ class SchoolStaffUserAdmin extends AbstractAdmin
             ->add('jobTitle')
             ->add('academicDegree')
             ->add('school')
+            ->add('enabled')
         ;
     }
 
@@ -56,6 +66,7 @@ class SchoolStaffUserAdmin extends AbstractAdmin
             ->add('jobTitle')
             ->add('academicDegree')
             ->add('school')
+            ->add('enabled')
         ;
     }
 }

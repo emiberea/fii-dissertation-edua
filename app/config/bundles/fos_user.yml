@@ -6,8 +6,18 @@ fos_user:
     service:
         user_manager: pugx_user_manager
     registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address: registration@edua.com
+                sender_name: EduA - Registration
         form:
             type: EB\UserBundle\Form\Type\RegistrationType
+    resetting:
+        email:
+            from_email:
+                address: resetting@edua.com
+                sender_name: EduA - Resetting
     profile:
         form:
             type: EB\UserBundle\Form\Type\ProfileType

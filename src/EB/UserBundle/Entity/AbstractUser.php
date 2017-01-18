@@ -94,4 +94,16 @@ abstract class AbstractUser extends BaseUser
     {
         return $this->firstName. ' ' . $this->lastName;
     }
+
+    /**
+     * @param string $email
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        parent::setUsername($email);
+        parent::setEmail($email);
+
+        return $this;
+    }
 }

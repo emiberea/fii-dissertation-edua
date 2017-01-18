@@ -17,6 +17,7 @@ class RegistrationType extends AbstractType
     {
         // custom fields
         $builder
+            ->remove('username')
             ->add('firstName')
             ->add('lastName')
             ->add('terms', CheckboxType::class, array(
