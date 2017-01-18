@@ -1,4 +1,5 @@
 services:
+    # Form types services
     eb_user.form.registration:
         class: EB\UserBundle\Form\Type\RegistrationType
         tags:
@@ -9,7 +10,14 @@ services:
         tags:
             - { name: form.type, alias: eb_user_profile }
 
-
+    # Authentication handler services
     eb_user.security.authentication_success_handler:
         class: EB\UserBundle\Security\Http\Authentication\AuthenticationSuccessHandler
-        arguments: [ '@security.http_utils', [] ]
+        arguments: ['@security.http_utils', []]
+
+    # Event Listener services
+    eb_user.listener.user:
+        class: EB\UserBundle\EventListener\UserListener
+        arguments: ['@event_dispatcher']
+        tags:
+            - { name: kernel.event_subscriber }
