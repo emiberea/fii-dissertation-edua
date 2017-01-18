@@ -84,6 +84,13 @@ class StudentUser extends AbstractUser
     private $baccalaureateMaximumGrade;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="verified", type="boolean")
+     */
+    private $verified = false;
+
+    /**
      * @var ArrayCollection|AdmissionAttendee[]
      *
      * @ORM\OneToMany(targetEntity="EB\CoreBundle\Entity\AdmissionAttendee", mappedBy="studentUser")
@@ -238,6 +245,25 @@ class StudentUser extends AbstractUser
     public function setBaccalaureateMaximumGrade($baccalaureateMaximumGrade)
     {
         $this->baccalaureateMaximumGrade = $baccalaureateMaximumGrade;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isVerified()
+    {
+        return $this->verified;
+    }
+
+    /**
+     * @param boolean $verified
+     * @return $this
+     */
+    public function setVerified($verified)
+    {
+        $this->verified = $verified;
 
         return $this;
     }

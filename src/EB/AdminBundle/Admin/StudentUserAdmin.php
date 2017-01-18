@@ -28,6 +28,7 @@ class StudentUserAdmin extends AbstractAdmin
             ->add('specialization')
             ->add('baccalaureateAverageGrade')
             ->add('baccalaureateMaximumGrade')
+            ->add('verified')
             ->add('enabled')
             ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
                 'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
@@ -57,6 +58,7 @@ class StudentUserAdmin extends AbstractAdmin
             ->add('specialization')
             ->add('baccalaureateAverageGrade')
             ->add('baccalaureateMaximumGrade')
+            ->add('verified')
             ->add('enabled')
         ;
     }
@@ -79,6 +81,7 @@ class StudentUserAdmin extends AbstractAdmin
             ->add('specialization')
             ->add('baccalaureateAverageGrade')
             ->add('baccalaureateMaximumGrade')
+            ->add('verified')
             ->add('enabled')
         ;
     }

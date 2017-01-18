@@ -2,7 +2,9 @@
 
 namespace EB\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use EB\CoreBundle\Entity\Notification;
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
@@ -44,9 +46,37 @@ abstract class AbstractUser extends BaseUser
      */
     private $lastName;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="EB\CoreBundle\Entity\Notification", mappedBy="senderUser")
+     */
+    private $sentNotifications;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="EB\CoreBundle\Entity\Notification", mappedBy="receiverUser")
+     */
+    private $receivedNotifications;
+
     public function __construct()
     {
         parent::__construct();
+        $this->sentNotifications = new ArrayCollection();
+        $this->receivedNotifications = new ArrayCollection();
+    }
+
+    /**
+     * @param string $email
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        parent::setUsername($email);
+        parent::setEmail($email);
+
+        return $this;
     }
 
     /**
@@ -96,13 +126,61 @@ abstract class AbstractUser extends BaseUser
     }
 
     /**
-     * @param string $email
+     * @return ArrayCollection
+     */
+    public function getSentNotifications()
+    {
+        return $this->sentNotifications;
+    }
+
+    /**
+     * @param Notification $sentNotification
      * @return $this
      */
-    public function setEmail($email)
+    public function addSentNotification($sentNotification)
     {
-        parent::setUsername($email);
-        parent::setEmail($email);
+        $this->sentNotifications->add($sentNotification);
+
+        return $this;
+    }
+
+    /**
+     * @param Notification $sentNotification
+     * @return $this
+     */
+    public function removeSentNotification($sentNotification)
+    {
+        $this->sentNotifications->removeElement($sentNotification);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getReceivedNotifications()
+    {
+        return $this->receivedNotifications;
+    }
+
+    /**
+     * @param Notification $receivedNotification
+     * @return $this
+     */
+    public function addReceivedNotification($receivedNotification)
+    {
+        $this->receivedNotifications->add($receivedNotification);
+
+        return $this;
+    }
+
+    /**
+     * @param Notification $receivedNotification
+     * @return $this
+     */
+    public function removeReceivedNotification($receivedNotification)
+    {
+        $this->receivedNotifications->removeElement($receivedNotification);
 
         return $this;
     }
