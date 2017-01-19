@@ -1,0 +1,12 @@
+{% block subject %}
+    {{ schoolStaffUser.getFullname }} accepted you to attend admission for school {{ admission.school.name }}
+{% endblock %}
+
+{% block html %}
+    Hello {{ student.getFullname }}!
+    <br />
+    <br />
+    {{ schoolStaffUser.getFullname }} accepted you to attend admission for school {{ admission.school.name }}
+    <br />
+    Have a nice day.
+{% endblock %}

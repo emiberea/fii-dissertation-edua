@@ -1,0 +1,12 @@
+{% block subject %}
+    {{ student.getFullname }} has registered on EduA
+{% endblock %}
+
+{% block html %}
+    Hello {{ admin.getFullname }}!
+    <br />
+    <br />
+    {{ student.getFullname }} has registered on EduA.
+    <br />
+    You can view his/her profile here: <a href="{{ '#' }}">{{ student.getFullname }}</a>, and confirm it, if everything looks ok.
+{% endblock %}
