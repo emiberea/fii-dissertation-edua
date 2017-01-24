@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataFixtures\ORM;
+namespace EB\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataFixtures\ORM;
+namespace EB\CoreBundle\DataFixtures\ORM;
 
 use EB\CoreBundle\Entity\School;
 
