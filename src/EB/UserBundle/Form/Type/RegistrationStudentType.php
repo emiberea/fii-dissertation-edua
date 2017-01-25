@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class RegistrationType extends AbstractType
+class RegistrationStudentType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -43,7 +43,7 @@ class RegistrationType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'eb_user_registration';
+        return 'eb_user_registration_student';
     }
 
     /**

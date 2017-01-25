@@ -7,12 +7,6 @@ pugx_multi_user:
         school_staff_user:
             entity:
                 class: EB\UserBundle\Entity\SchoolStaffUser
-            registration:
-                form:
-                    type: EB\UserBundle\Form\Type\RegistrationType
-                    name: eb_user_registration
-                    validation_groups: [Registration, Default]
-                template: EBUserBundle:RegistrationSchoolStaffUser:register.html.twig
             profile:
                 form:
                     type: EB\UserBundle\Form\Type\ProfileType
@@ -23,10 +17,10 @@ pugx_multi_user:
                 class: EB\UserBundle\Entity\StudentUser
             registration:
                 form:
-                    type: EB\UserBundle\Form\Type\RegistrationType
-                    name: eb_user_registration
+                    type: EB\UserBundle\Form\Type\RegistrationStudentType
+                    name: eb_user_registration_student
                     validation_groups: [Registration, Default]
-                template: EBUserBundle:RegistrationStudentUser:register.html.twig
+                template: EBUserBundle:Registration:register_student.html.twig
             profile:
                 form:
                     type: EB\UserBundle\Form\Type\StudentUserProfileType

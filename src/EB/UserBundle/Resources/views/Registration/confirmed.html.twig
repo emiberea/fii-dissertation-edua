@@ -1,16 +1,14 @@
-{% extends "EBUserBundle::layout.html.twig" %}
+{% extends 'EBUserBundle::layout.html.twig' %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
     <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-md-offset-4">
             <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
             {% if targetUrl %}
                 <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
             {% endif %}
         </div>
-        <div class="col-md-4"></div>
     </div>
 {% endblock fos_user_content %}

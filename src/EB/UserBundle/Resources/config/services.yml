@@ -1,9 +1,9 @@
 services:
     # Form types services
     eb_user.form.registration:
-        class: EB\UserBundle\Form\Type\RegistrationType
+        class: EB\UserBundle\Form\Type\RegistrationStudentType
         tags:
-            - { name: form.type, alias: eb_user_registration }
+            - { name: form.type, alias: eb_user_registration_student }
 
     eb_user.profile.form.type:
         class: EB\UserBundle\Form\Type\ProfileType

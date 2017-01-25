@@ -1,6 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'EBCoreBundle:Form:fields.html.twig' %}
 
-{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+<h2>Set new password</h2>
+{{ form_start(form, {'action': path('fos_user_resetting_reset', {'token': token})}) }}
     <div class="form-group">
         {{ form_widget(form.plainPassword.first, {attr: {placeholder: 'New Password'}}) }}
         {{ form_errors(form.plainPassword.first) }}

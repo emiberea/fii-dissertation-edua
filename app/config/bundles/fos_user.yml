@@ -11,8 +11,6 @@ fos_user:
             from_email:
                 address: registration@edua.com
                 sender_name: EduA - Registration
-        form:
-            type: EB\UserBundle\Form\Type\RegistrationType
     resetting:
         email:
             from_email:

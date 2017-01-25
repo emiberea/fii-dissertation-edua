@@ -1,4 +1,5 @@
-{% extends "EBUserBundle::layout.html.twig" %}
+{% extends 'EBUserBundle::layout.html.twig' %}
+{# TODO: see why the form theme is not woriking with the curent file name, only with the default register.html.twig works #}
 
 {% trans_default_domain 'FOSUserBundle' %}
 {% form_theme form 'EBCoreBundle:Form:fields.html.twig' %}
@@ -6,21 +7,22 @@
 {% block fos_user_content %}
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            {{ form_start(form, {'method': 'post', 'action': path('eb_user_register_school_staff'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+            <h2>Student Register</h2>
+            {{ form_start(form, {'method': 'post', 'action': path('eb_user_register_student')}) }}
                 <div class="panel panel-default">
                     <div class="panel-heading">Account data</div>
                     <div class="panel-body">
                         {{ form_errors(form) }}
                         <div class="form-group">
-                            {{ form_widget(form.email, {attr: {placeholder: 'Email'}}) }}
+                            {{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}
                             {{ form_errors(form.email) }}
                         </div>
                         <div class="form-group">
-                            {{ form_widget(form.plainPassword.first, {attr: {placeholder: 'Password'}}) }}
+                            {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Password'}}) }}
                             {{ form_errors(form.plainPassword.first) }}
                         </div>
                         <div class="form-group">
-                            {{ form_widget(form.plainPassword.second, {attr: {placeholder: 'Confirm Password'}}) }}
+                            {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Confirm Password'}}) }}
                             {{ form_errors(form.plainPassword.second) }}
                         </div>
                     </div>
@@ -29,11 +31,11 @@
                     <div class="panel-heading">Personal data</div>
                     <div class="panel-body">
                         <div class="form-group">
-                            {{ form_widget(form.firstName, {attr: {placeholder: 'Firstname'}}) }}
+                            {{ form_widget(form.firstName, {'attr': {'placeholder': 'Firstname'}}) }}
                             {{ form_errors(form.firstName) }}
                         </div>
                         <div class="form-group">
-                            {{ form_widget(form.lastName, {attr: {placeholder: 'Lastname'}}) }}
+                            {{ form_widget(form.lastName, {'attr': {'placeholder': 'Lastname'}}) }}
                             {{ form_errors(form.lastName) }}
                         </div>
                     </div>
