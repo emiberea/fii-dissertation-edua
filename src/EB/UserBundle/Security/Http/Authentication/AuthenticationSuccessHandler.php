@@ -3,7 +3,6 @@
 namespace EB\UserBundle\Security\Http\Authentication;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
@@ -39,7 +38,7 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
         if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
-            return new RedirectResponse($this->router->generate('sonata_admin_dashboard'));
+            return $this->httpUtils->createRedirectResponse($request, 'sonata_admin_dashboard');
         }
 
         return $this->httpUtils->createRedirectResponse($request, $this->determineTargetUrl($request));
