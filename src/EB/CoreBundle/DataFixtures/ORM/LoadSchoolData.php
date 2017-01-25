@@ -5,7 +5,6 @@ namespace EB\CoreBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use EB\CoreBundle\Entity\School;
-use EB\UserBundle\Entity\SchoolStaffUser;
 
 class LoadSchoolData extends BaseFixture implements OrderedFixtureInterface
 {

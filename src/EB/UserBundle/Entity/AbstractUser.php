@@ -67,14 +67,19 @@ abstract class AbstractUser extends BaseUser
         $this->receivedNotifications = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getFullName();
+    }
+
     /**
      * @param string $email
      * @return $this
      */
     public function setEmail($email)
     {
-        parent::setUsername($email);
-        parent::setEmail($email);
+        $this->email = $email;
+        $this->username = $email;
 
         return $this;
     }

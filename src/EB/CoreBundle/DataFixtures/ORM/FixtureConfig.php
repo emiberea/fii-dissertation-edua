@@ -6,9 +6,10 @@ use EB\CoreBundle\Entity\School;
 
 final class FixtureConfig
 {
-    const MAX_ADMIN_USERS = 10;
+    const MAX_ADMIN_USERS = 2;
     const MAX_SCHOOL_STAFF_USERS = 10;
     const MAX_STUDENTS_USERS = 10;
+    const PASSWORD = '12345';
 
     /** @var array $highSchoolArr */
     public static $highSchoolArr = [
@@ -44,7 +45,7 @@ final class FixtureConfig
             'name' => 'Facultatea de Istorie',
             'country' => 'Romania',
             'city' => 'Iasi',
-            'address' => 'bul. Carol 1, no. 2',
+            'address' => 'bul. Carol 1, no. 3',
             'type' => School::TYPE_FACULTY,
         ],
         [

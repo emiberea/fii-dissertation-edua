@@ -9,10 +9,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 abstract class BaseFixture extends AbstractFixture implements ContainerAwareInterface
 {
     /** @var ContainerInterface $container */
-    private $container;
+    protected $container;
 
     /** @var \Faker\Generator $faker */
-    private $faker;
+    protected $faker;
 
     /**
      * @param ContainerInterface|null $container
@@ -21,13 +21,5 @@ abstract class BaseFixture extends AbstractFixture implements ContainerAwareInte
     {
         $this->container = $container;
         $this->faker = $this->container->get('faker.generator');
-    }
-
-    /**
-     * @return \Faker\Generator
-     */
-    public function getFaker()
-    {
-        return $this->faker;
     }
 }
