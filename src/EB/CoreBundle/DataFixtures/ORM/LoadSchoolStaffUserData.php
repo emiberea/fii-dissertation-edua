@@ -15,7 +15,7 @@ class LoadSchoolStaffUserData extends BaseFixture implements OrderedFixtureInter
     {
         for ($i = 1; $i <= FixtureConfig::MAX_SCHOOL_STAFF_USERS; $i++) {
             $schoolStaffUser = new SchoolStaffUser();
-            $schoolStaffUser->setEmail('emi.berea+school-staff' . $i . '@gmail.com');
+            $schoolStaffUser->setEmail('emi.berea+ssu-' . $i . '@gmail.com');
             $schoolStaffUser->setPlainPassword(FixtureConfig::PASSWORD);
             $schoolStaffUser->setEnabled(true);
             $schoolStaffUser->setFirstName($this->faker->firstName);

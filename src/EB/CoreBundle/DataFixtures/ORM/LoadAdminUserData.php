@@ -15,7 +15,7 @@ class LoadAdminUserData extends BaseFixture implements OrderedFixtureInterface
     {
         for ($i = 1; $i <= FixtureConfig::MAX_ADMIN_USERS; $i++) {
             $adminUser = new AdminUser();
-            $adminUser->setEmail('emi.berea+admin' . $i . '@gmail.com');
+            $adminUser->setEmail('emi.berea+admin-' . $i . '@gmail.com');
             $adminUser->setPlainPassword(FixtureConfig::PASSWORD);
             $adminUser->setEnabled(true);
             $adminUser->addRole('ROLE_ADMIN');

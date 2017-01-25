@@ -15,7 +15,7 @@ class LoadStudentUserData extends BaseFixture implements OrderedFixtureInterface
     {
         for ($i = 1; $i <= FixtureConfig::MAX_STUDENTS_USERS; $i++) {
             $studentUser = new StudentUser();
-            $studentUser->setEmail('emi.berea+student' . $i . '@gmail.com');
+            $studentUser->setEmail('emi.berea+student-' . $i . '@gmail.com');
             $studentUser->setPlainPassword(FixtureConfig::PASSWORD);
             $studentUser->setEnabled(true);
             $studentUser->setFirstName($this->faker->firstName);
