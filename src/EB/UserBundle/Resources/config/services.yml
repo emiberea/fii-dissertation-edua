@@ -13,7 +13,7 @@ services:
     # Authentication handler services
     eb_user.security.authentication_success_handler:
         class: EB\UserBundle\Security\Http\Authentication\AuthenticationSuccessHandler
-        arguments: ['@security.http_utils', []]
+        arguments: ['@security.http_utils', [], '@router', '@security.authorization_checker']
 
     # Event Listener services
     eb_user.listener.user:

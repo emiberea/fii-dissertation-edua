@@ -2,13 +2,35 @@
 
 namespace EB\UserBundle\Security\Http\Authentication;
 
-use EB\UserBundle\Entity\AbstractUser;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler;
+use Symfony\Component\Security\Http\HttpUtils;
 
 class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
 {
+    /** @var Router $router */
+    private $router;
+
+    /** @var AuthorizationChecker $authorizationChecker */
+    private $authorizationChecker;
+
+    /**
+     * @param HttpUtils $httpUtils
+     * @param array $options
+     * @param Router $router
+     * @param AuthorizationChecker $authorizationChecker
+     */
+    public function __construct(HttpUtils $httpUtils, array $options, Router $router, AuthorizationChecker $authorizationChecker)
+    {
+        parent::__construct($httpUtils, $options);
+        $this->router = $router;
+        $this->authorizationChecker = $authorizationChecker;
+    }
+
     /**
      * @param Request $request
      * @param TokenInterface $token
@@ -16,10 +38,8 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-        /** @var AbstractUser $user */
-        $user = $token->getUser();
-        if ($user instanceof AbstractUser && in_array('ROLE_ADMIN', $user->getRoles())) {
-            return $this->httpUtils->createRedirectResponse($request, '/admin/dashboard'); // TODO: use router service instead of hard-coding the URL
+        if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+            return new RedirectResponse($this->router->generate('sonata_admin_dashboard'));
         }
 
         return $this->httpUtils->createRedirectResponse($request, $this->determineTargetUrl($request));
