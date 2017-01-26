@@ -16,6 +16,3 @@ fos_user:
             from_email:
                 address: resetting@edua.com
                 sender_name: EduA - Resetting
-    profile:
-        form:
-            type: EB\UserBundle\Form\Type\ProfileType

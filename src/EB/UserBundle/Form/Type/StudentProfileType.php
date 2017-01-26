@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StudentUserProfileType extends AbstractType
+class StudentProfileType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,6 +17,7 @@ class StudentUserProfileType extends AbstractType
     {
         // custom fields
         $builder
+            ->remove('username')
             ->add('firstName')
             ->add('lastName')
             ->add('fatherInitial')
@@ -37,9 +38,6 @@ class StudentUserProfileType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => StudentUser::class,
-            'csrf_token_id' => 'profile',
-            // BC for SF < 2.8
-            'intention' => 'profile',
         ));
     }
 
@@ -56,7 +54,7 @@ class StudentUserProfileType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'eb_user_student_user_profile';
+        return 'eb_user_student_profile';
     }
 
     /**

@@ -5,11 +5,6 @@ services:
         tags:
             - { name: form.type, alias: eb_user_registration_student }
 
-    eb_user.profile.form.type:
-        class: EB\UserBundle\Form\Type\ProfileType
-        tags:
-            - { name: form.type, alias: eb_user_profile }
-
     # Authentication handler services
     eb_user.security.authentication_success_handler:
         class: EB\UserBundle\Security\Http\Authentication\AuthenticationSuccessHandler

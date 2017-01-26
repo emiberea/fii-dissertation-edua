@@ -2,10 +2,12 @@
 
 namespace EB\UserBundle\Form\Type;
 
+use EB\UserBundle\Entity\SchoolStaffUser;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProfileType extends AbstractType
+class SchoolStaffProfileType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,9 +17,23 @@ class ProfileType extends AbstractType
     {
         // custom fields
         $builder
+            ->remove('username')
             ->add('firstName')
             ->add('lastName')
+            ->add('title')
+            ->add('jobTitle')
+            ->add('academicDegree')
         ;
+    }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => SchoolStaffUser::class,
+        ));
     }
 
     /**
@@ -33,7 +49,7 @@ class ProfileType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'eb_user_profile';
+        return 'eb_user_student_profile';
     }
 
     /**

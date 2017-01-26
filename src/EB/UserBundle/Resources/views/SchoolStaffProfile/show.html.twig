@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <h3>{{ schoolStaffUser.firstname }} {{ schoolStaffUser.lastname }}</h3>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">Account data</div>
+                <table class="table table-hover">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <th>{{ 'profile.show.email'|trans }}</th>
+                            <td>{{ schoolStaffUser.email }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Personal data</div>
+                <table class="table table-hover">
+                    <thead></thead>
+                    <tbody>
+                    <tr>
+                        <th>Firstname</th>
+                        <td>{{ schoolStaffUser.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Lastname</th>
+                        <td>{{ schoolStaffUser.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ schoolStaffUser.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Job Title</th>
+                        <td>{{ schoolStaffUser.jobTitle }}</td>
+                    </tr>
+                    <tr>
+                        <th>Academic Degree</th>
+                        <td>{{ schoolStaffUser.academicDegree }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
