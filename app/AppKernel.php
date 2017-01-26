@@ -20,11 +20,6 @@ class AppKernel extends Kernel
             // 3rd party bundles
             new FOS\UserBundle\FOSUserBundle(),
             new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
-            new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-            new Sonata\AdminBundle\SonataAdminBundle(),
             new TSS\AutomailerBundle\TSSAutomailerBundle(),
 
             // application bundles

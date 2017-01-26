@@ -24,7 +24,7 @@ class ProfileController extends BaseController
         } elseif ($user instanceof SchoolStaffUser) {
             return $this->redirectToRoute('eb_user_school_staff_profile_show');
         } else {
-            return $this->createNotFoundException('Profile for user not found.');
+            throw $this->createNotFoundException('Profile page for user not found.');
         }
     }
 
@@ -43,7 +43,7 @@ class ProfileController extends BaseController
         } elseif ($user instanceof SchoolStaffUser) {
             return $this->redirectToRoute('eb_user_school_staff_profile_edit');
         } else {
-            return $this->createNotFoundException('Profile edit for user not found.');
+            throw $this->createNotFoundException('Profile edit page for user not found.');
         }
     }
 }
