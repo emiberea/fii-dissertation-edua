@@ -49,7 +49,7 @@ class SchoolStaffProfileType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'eb_user_student_profile';
+        return 'eb_user_school_staff_profile';
     }
 
     /**
