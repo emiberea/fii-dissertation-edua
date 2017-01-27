@@ -45,20 +45,17 @@
                             <ul class="nav navbar-nav">
                                 <li class="{{ route ==  'eb_app_home_index' ? 'active' }}">
                                     <a href="{{ path('eb_core_home_index') }}">
-                                        <span class="glyphicon glyphicon-home"></span>
-                                        Home
+                                        <span class="glyphicon glyphicon-home"></span> Home
                                     </a>
                                 </li>
-                                <li class="{{ route == 'shop' ? 'active' }}">
-                                    {#<a href="{{ path('student') }}">#}
-                                    {#Students#}
-                                    {#</a>#}
-                                </li>
-                                <li class="{{ route == 'product' ? 'active' }}">
-                                    {#<a href="{{ path('admission') }}">#}
-                                    {#Admission#}
-                                    {#</a>#}
-                                </li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li class="{{ route in 'eb_admin_student' ? 'active' }}">
+                                        <a href="{{ path('eb_admin_student_index') }}">Students</a>
+                                    </li>
+                                    <li class="{{ route in 'eb_admin_ssu' ? 'active' }}">
+                                        <a href="{{ path('eb_admin_ssu_index') }}">School Staff Users</a>
+                                    </li>
+                                {% endif %}
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown {{ 'fos_user' in route ? 'active' }}">
