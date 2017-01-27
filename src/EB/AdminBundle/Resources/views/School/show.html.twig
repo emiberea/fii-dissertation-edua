@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <a href="{{ path('eb_admin_school_index') }}" class="btn btn-default pull-right">Back to the list</a>
+            <h2>School #{{ school.id }}</h2>
+            <table class="table">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ school.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ school.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <td>{{ school.country }}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{ school.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ school.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td>{{ school.type }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="{{ path('eb_admin_school_edit', { 'id': school.id }) }}" class="btn btn-warning">Edit</a>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -49,7 +49,7 @@ class StudentController extends Controller
             $studentUser->setPasswordRequestedAt(new \DateTime());
             $studentUser->setConfirmationToken($this->get('fos_user.util.token_generator')->generateToken());
 
-            // send registration (reset password) email to the doctor
+            // send registration (reset password) email to the Student
             $this->get('eb_core.service.mailer')->sendEmail($studentUser->getEmail(), 'EBAdminBundle:Student/Email:newAccount.html.twig', [
                 'studentUser' => $studentUser,
                 'confirmationUrl' => $this->generateUrl('fos_user_resetting_reset', ['token' => $studentUser->getConfirmationToken()], true),

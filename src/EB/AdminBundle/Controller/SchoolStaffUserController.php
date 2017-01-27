@@ -49,7 +49,7 @@ class SchoolStaffUserController extends Controller
             $schoolStaffUser->setPasswordRequestedAt(new \DateTime());
             $schoolStaffUser->setConfirmationToken($this->get('fos_user.util.token_generator')->generateToken());
 
-            // send registration (reset password) email to the doctor
+            // send registration (reset password) email to the School Staff User
             $this->get('eb_core.service.mailer')->sendEmail($schoolStaffUser->getEmail(), 'EBAdminBundle:SchoolStaffUser/Email:newAccount.html.twig', [
                 'schoolStaffUser' => $schoolStaffUser,
                 'confirmationUrl' => $this->generateUrl('fos_user_resetting_reset', ['token' => $schoolStaffUser->getConfirmationToken()], true),
