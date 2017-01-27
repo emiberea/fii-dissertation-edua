@@ -38,7 +38,7 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
         if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
-            return $this->httpUtils->createRedirectResponse($request, 'sonata_admin_dashboard'); // @TODO: update route name
+            return $this->httpUtils->createRedirectResponse($request, 'eb_admin_dashboard_index');
         }
 
         return $this->httpUtils->createRedirectResponse($request, $this->determineTargetUrl($request));
