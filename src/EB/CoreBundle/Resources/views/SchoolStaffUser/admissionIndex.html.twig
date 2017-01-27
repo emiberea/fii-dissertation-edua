@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Admission List</h2>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Created At</th>
+                            <th>Session Date</th>
+                            <th>Budget Financed No</th>
+                            <th>Fee Payer No</th>
+                            <th>Budget / Fee Threshold</th>
+                            <th>Fee / Rejected No</th>
+                            <th>Closest At</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for admission in admissions %}
+                            <tr>
+                                <td><a href="{{ path('eb_core_ssu_admission_show', { 'id': admission.id }) }}">{{ admission.id }}</a></td>
+                                <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                                <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                                <td>{{ admission.budgetFinancedNo }}</td>
+                                <td>{{ admission.feePayerNo }}</td>
+                                <td>{{ admission.budgetFeeThreshold }}</td>
+                                <td>{{ admission.feeRejectedThreshold }}</td>
+                                <td>{{ admission.closedAt }}</td>
+                                <td>{{ admission.status }}</td>
+                                <td>
+                                    <a href="{{ path('eb_core_ssu_admission_show', { 'id': admission.id }) }}" class="btn btn-info btn-xs">show</a>
+                                    <a href="{{ path('eb_core_ssu_admission_edit', { 'id': admission.id }) }}" class="btn btn-warning btn-xs">edit</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                    <a href="{{ path('eb_core_ssu_admission_new') }}" class="btn btn-default">Add Admission</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
