@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>School Staff User List</h2>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Title</th>
+                            <th>Job Title</th>
+                            <th>Academic Degree</th>
+                            <th>Enabled</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for schoolStaffUser in schoolStaffUsers %}
+                            <tr>
+                                <td><a href="{{ path('eb_admin_ssu_show', { 'id': schoolStaffUser.id }) }}">{{ schoolStaffUser.id }}</a></td>
+                                <td>{{ schoolStaffUser.firstName }}</td>
+                                <td>{{ schoolStaffUser.lastName }}</td>
+                                <td>{{ schoolStaffUser.title }}</td>
+                                <td>{{ schoolStaffUser.jobTitle }}</td>
+                                <td>{{ schoolStaffUser.academicDegree }}</td>
+                                <td>{% if schoolStaffUser.enabled %}Yes{% else %}No{% endif %}</td>
+                                <td>
+                                    <a href="{{ path('eb_admin_ssu_show', { 'id': schoolStaffUser.id }) }}" class="btn btn-info btn-xs">show</a>
+                                    <a href="{{ path('eb_admin_ssu_edit', { 'id': schoolStaffUser.id }) }}" class="btn btn-warning btn-xs">edit</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                    <a href="{{ path('eb_admin_ssu_new') }}" class="btn btn-default">Add School Staff User</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
