@@ -16,6 +16,7 @@
                             <th>Title</th>
                             <th>Job Title</th>
                             <th>Academic Degree</th>
+                            <th>School</th>
                             <th>Enabled</th>
                             <th>Actions</th>
                         </tr>
@@ -29,6 +30,11 @@
                                 <td>{{ schoolStaffUser.title }}</td>
                                 <td>{{ schoolStaffUser.jobTitle }}</td>
                                 <td>{{ schoolStaffUser.academicDegree }}</td>
+                                <td>
+                                    {% if schoolStaffUser.school is not empty %}
+                                        <a href="{{ path('eb_admin_school_show', {'id': schoolStaffUser.school.id}) }}">{{ schoolStaffUser.school.name }}</a>
+                                    {% endif %}
+                                </td>
                                 <td>{% if schoolStaffUser.enabled %}Yes{% else %}No{% endif %}</td>
                                 <td>
                                     <a href="{{ path('eb_admin_ssu_show', { 'id': schoolStaffUser.id }) }}" class="btn btn-info btn-xs">show</a>

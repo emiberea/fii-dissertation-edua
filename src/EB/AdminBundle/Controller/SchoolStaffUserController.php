@@ -100,6 +100,7 @@ class SchoolStaffUserController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'School Staff User edited successfully!');
 
             return $this->redirectToRoute('eb_admin_ssu_edit', array('id' => $schoolStaffUser->getId()));
         }
@@ -126,6 +127,8 @@ class SchoolStaffUserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($schoolStaffUser);
             $em->flush($schoolStaffUser);
+
+            $this->addFlash('success', 'School Staff User deleted successfully!');
         }
 
         return $this->redirectToRoute('eb_admin_ssu_index');

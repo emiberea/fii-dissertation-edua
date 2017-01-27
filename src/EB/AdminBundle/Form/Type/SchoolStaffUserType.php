@@ -21,6 +21,7 @@ class SchoolStaffUserType extends AbstractType
             ->add('title')
             ->add('jobTitle')
             ->add('academicDegree')
+            ->add('school')
         ;
     }
     

@@ -100,6 +100,7 @@ class StudentController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Student edited successfully!');
 
             return $this->redirectToRoute('eb_admin_student_edit', array('id' => $studentUser->getId()));
         }
@@ -126,6 +127,8 @@ class StudentController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($studentUser);
             $em->flush($studentUser);
+
+            $this->addFlash('success', 'Student deleted successfully!');
         }
 
         return $this->redirectToRoute('eb_admin_student_index');

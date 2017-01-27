@@ -89,6 +89,7 @@ class SchoolController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'School edited successfully!');
 
             return $this->redirectToRoute('eb_admin_school_edit', array('id' => $school->getId()));
         }
@@ -115,6 +116,8 @@ class SchoolController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($school);
             $em->flush($school);
+
+            $this->addFlash('success', 'School deleted successfully!');
         }
 
         return $this->redirectToRoute('eb_admin_school_index');
