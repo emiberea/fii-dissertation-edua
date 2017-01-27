@@ -18,6 +18,7 @@ class LoadSchoolStaffUserData extends BaseFixture implements OrderedFixtureInter
             $schoolStaffUser->setEmail('emi.berea+ssu-' . $i . '@gmail.com');
             $schoolStaffUser->setPlainPassword(FixtureConfig::PASSWORD);
             $schoolStaffUser->setEnabled(true);
+            $schoolStaffUser->addRole('ROLE_SSU');
             $schoolStaffUser->setFirstName($this->faker->firstName);
             $schoolStaffUser->setLastName($this->faker->lastName);
             $schoolStaffUser->setTitle($this->faker->title);

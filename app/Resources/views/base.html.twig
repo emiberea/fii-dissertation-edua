@@ -59,6 +59,14 @@
                                         <a href="{{ path('eb_admin_ssu_index') }}">School Staff Users</a>
                                     </li>
                                 {% endif %}
+                                {% if is_granted('ROLE_SSU') %}
+                                    <li class="{{ route == 'eb_core_ssu_view_school' ? 'active' }}">
+                                        <a href="{{ path('eb_core_ssu_view_school') }}">Our School</a>
+                                    </li>
+                                    <li class="{{ route in 'eb_core_ssu_admission' ? 'active' }}">
+                                        <a href="{{ path('eb_core_ssu_admission_index') }}">Admissions</a>
+                                    </li>
+                                {% endif %}
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown {{ 'fos_user' in route ? 'active' }}">

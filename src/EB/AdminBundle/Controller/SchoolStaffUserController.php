@@ -46,6 +46,7 @@ class SchoolStaffUserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $schoolStaffUser->setPlainPassword(uniqid());
             $schoolStaffUser->setEnabled(true);
+            $schoolStaffUser->addRole('ROLE_SSU');
             $schoolStaffUser->setPasswordRequestedAt(new \DateTime());
             $schoolStaffUser->setConfirmationToken($this->get('fos_user.util.token_generator')->generateToken());
 

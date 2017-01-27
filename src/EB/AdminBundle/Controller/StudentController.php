@@ -46,6 +46,7 @@ class StudentController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $studentUser->setPlainPassword(uniqid());
             $studentUser->setEnabled(true);
+            $studentUser->addRole('ROLE_STUDENT');
             $studentUser->setPasswordRequestedAt(new \DateTime());
             $studentUser->setConfirmationToken($this->get('fos_user.util.token_generator')->generateToken());
 
