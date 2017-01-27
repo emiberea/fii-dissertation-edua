@@ -1,0 +1,23 @@
+{% block subject %}EduA - Account creation for {{ studentUser.fullName }}{% endblock subject %}
+
+{% block text %}
+    Hello {{ studentUser.fullName }},
+
+    We have registered a new account for you with Email: {{ studentUser.email }}
+
+    You can setup your account following this link: {{ confirmationUrl }}
+
+    Best regards, EduA team
+{% endblock text %}
+
+{% block html %}
+    <html>
+    <body>
+        <h3>Hello {{ studentUser.fullName }},</h3>
+        <p>We have registered a new account for you with <strong>Email</strong>: <span>{{ studentUser.email }}</span></p>
+        <p>You can setup your account following this link: <a href="{{ confirmationUrl }}">{{ confirmationUrl }}</a></p>
+        <br>
+        <p>Best regards,<br>EduA team</p>
+    </body>
+    </html>
+{% endblock html %}

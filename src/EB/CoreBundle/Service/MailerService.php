@@ -36,7 +36,7 @@ class MailerService
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
-            ->setFrom(array('no-reply@getaride.ro' => 'no-reply@getaride.ro'))
+            ->setFrom(array('no-reply@edua.com' => 'no-reply@edua.com'))
             ->setTo($recipient)
         ;
 

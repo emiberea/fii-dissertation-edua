@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <a href="{{ path('eb_admin_student_index') }}" class="btn btn-default pull-right">Back to the list</a>
+            <h1>Student Edit</h1>
+
+            {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <input type="submit" value="Edit" class="btn btn-warning" />
+            {{ form_end(edit_form) }}
+
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}
