@@ -99,7 +99,7 @@ class School
 
     public function __toString()
     {
-        return $this->name . ' ' . $this->city;
+        return $this->name . ', ' . $this->city;
     }
 
     /**

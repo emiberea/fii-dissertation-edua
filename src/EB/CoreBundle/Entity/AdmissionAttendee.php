@@ -13,15 +13,17 @@ use EB\UserBundle\Entity\StudentUser;
  */
 class AdmissionAttendee
 {
+    const RESULT_ATTENDED = 0;
+    const RESULT_REJECTED = 1;
+    const RESULT_ACCEPTED_FEE = 2;
+    const RESULT_ACCEPTED_BUDGET = 3;
 
-    const RESULT_REJECTED = 0;
-    const RESULT_ACCEPTED_FEE = 1;
-    const RESULT_ACCEPTED_BUDGET = 2;
-
+    /** @var array $statusArr */
     public static $statusArr = [
+        self::RESULT_ATTENDED => 'Attended',
         self::RESULT_REJECTED => 'Rejected',
         self::RESULT_ACCEPTED_FEE => 'Accepted Fee',
-        self::RESULT_ACCEPTED_BUDGET => 'Accepted budget',
+        self::RESULT_ACCEPTED_BUDGET => 'Accepted Budget',
     ];
 
     /**
@@ -43,7 +45,7 @@ class AdmissionAttendee
     /**
      * @var float
      *
-     * @ORM\Column(name="admission_exam_grade", type="decimal", precision=4, scale=2)
+     * @ORM\Column(name="admission_exam_grade", type="decimal", precision=4, scale=2, nullable=true)
      */
     private $admissionExamGrade;
 
@@ -92,6 +94,7 @@ class AdmissionAttendee
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->result = self::RESULT_ATTENDED;
     }
 
     /**

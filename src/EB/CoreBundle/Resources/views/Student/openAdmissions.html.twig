@@ -5,13 +5,13 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2>Admission List</h2>
+                    <h2>Open Admission List</h2>
                 </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Created At</th>
+                            <th>School</th>
                             <th>Session Date</th>
                             <th>Budget Financed No</th>
                             <th>Fee Payer No</th>
@@ -24,9 +24,9 @@
                     </thead>
                     <tbody>
                         {% for admission in admissions %}
-                            <tr>
-                                <td><a href="{{ path('eb_core_ssu_admission_show', { 'id': admission.id }) }}">{{ admission.id }}</a></td>
-                                <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                            <tr{% if admission.id in admissionAttendeeArr %} class="info"{% endif %}>
+                                <td>{{ admission.id }}</td>
+                                <td>{{ admission.school }}</td>
                                 <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('d-m-Y') }}{% else %}-{% endif %}</td>
                                 <td>{{ admission.budgetFinancedNo }}</td>
                                 <td>{{ admission.feePayerNo }}</td>
@@ -35,16 +35,16 @@
                                 <td>{{ admission.closedAt }}</td>
                                 <td>{{ admission.getStatusAsString }}</td>
                                 <td>
-                                    <a href="{{ path('eb_core_ssu_admission_show', { 'id': admission.id }) }}" class="btn btn-info btn-xs">show</a>
-                                    <a href="{{ path('eb_core_ssu_admission_edit', { 'id': admission.id }) }}" class="btn btn-warning btn-xs">edit</a>
+                                    {% if admission.id in admissionAttendeeArr %}
+                                        <a href="{{ path('eb_core_student_view_attended_admission', {'id': admission.id }) }}" class="btn btn-info btn-xs">details</a>
+                                    {% else %}
+                                        <a href="{{ path('eb_core_student_attend_admission', {'id': admission.id }) }}" class="btn btn-success btn-xs">attend</a>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                <div class="panel-footer">
-                    <a href="{{ path('eb_core_ssu_admission_new') }}" class="btn btn-default">Add Admission</a>
-                </div>
             </div>
         </div>
     </div>

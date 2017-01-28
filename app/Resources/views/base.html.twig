@@ -67,6 +67,14 @@
                                         <a href="{{ path('eb_core_ssu_admission_index') }}">Admissions</a>
                                     </li>
                                 {% endif %}
+                                {% if is_granted('ROLE_STUDENT') %}
+                                    <li class="{{ route == 'eb_core_student_open_admissions' ? 'active' }}">
+                                        <a href="{{ path('eb_core_student_open_admissions') }}">Open Admissions</a>
+                                    </li>
+                                    <li class="{{ route == 'eb_core_student_attended_admissions' ? 'active' }}">
+                                        <a href="{{ path('eb_core_student_attended_admissions') }}">Attended Admissions</a>
+                                    </li>
+                                {% endif %}
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown {{ 'fos_user' in route ? 'active' }}">

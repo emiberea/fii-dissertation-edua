@@ -17,6 +17,7 @@ class Admission
     const STATUS_PROCESSING = 1;
     const STATUS_CLOSED = 2;
 
+    /** @var array $statusArr */
     public static $statusArr = [
         self::STATUS_OPEN => 'Open',
         self::STATUS_PROCESSING => 'Processing',
@@ -272,6 +273,14 @@ class Admission
         $this->status = $status;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusAsString()
+    {
+        return self::$statusArr[$this->status];
     }
 
     /**
