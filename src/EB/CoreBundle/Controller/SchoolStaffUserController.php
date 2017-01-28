@@ -217,7 +217,7 @@ class SchoolStaffUserController extends Controller
     /**
      * @ParamConverter("admission", class="EBCoreBundle:Admission", options={"id"="admissionId"})
      * @ParamConverter("admissionAttendee", class="EBCoreBundle:AdmissionAttendee", options={"id"="admissionAttendeeId"})
-     * @Route("/admission/{admissionId}/students/{admissionAttendeeId}", name="eb_core_ssu_admission_edit_student")
+     * @Route("/admission/{admissionId}/student/{admissionAttendeeId}", name="eb_core_ssu_admission_edit_student")
      * @Method({"GET", "POST"})
      */
     public function admissionEditStudentAction(Request $request, Admission $admission, AdmissionAttendee $admissionAttendee)

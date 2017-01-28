@@ -13,10 +13,6 @@
                         <td>{{ admission.id }}</td>
                     </tr>
                     <tr>
-                        <th>Created At</th>
-                        <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
-                    </tr>
-                    <tr>
                         <th>Session Date</th>
                         <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('d-m-Y') }}{% else %}-{% endif %}</td>
                     </tr>
@@ -43,6 +39,69 @@
                     <tr>
                         <th>Status</th>
                         <td>{{ admission.statusAsString }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Student #{{ student.id }} <b>{{ student.fullName }}</b></h2>
+            <table class="table">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ student.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ student.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <td>{{ student.firstName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{ student.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Father Initial</th>
+                        <td>{{ student.fatherInitial }}</td>
+                    </tr>
+                    <tr>
+                        <th>Pin</th>
+                        <td>{{ student.pin }}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{ student.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ student.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>High School</th>
+                        <td>{{ student.highSchool }}</td>
+                    </tr>
+                    <tr>
+                        <th>Specialization</th>
+                        <td>{{ student.specialization }}</td>
+                    </tr>
+                    <tr>
+                        <th>Baccalaureate Average Grade</th>
+                        <td>{{ student.baccalaureateAverageGrade }}</td>
+                    </tr>
+                    <tr>
+                        <th>Baccalaureate Maximum Grade</th>
+                        <td>{{ student.baccalaureateMaximumGrade }}</td>
+                    </tr>
+                    <tr>
+                        <th>Enabled</th>
+                        <td>{% if student.enabled %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Verified</th>
+                        <td>{% if student.verified %}Yes{% else %}No{% endif %}</td>
                     </tr>
                 </tbody>
             </table>
