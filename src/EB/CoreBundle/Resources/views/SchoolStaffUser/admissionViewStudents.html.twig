@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="{{ path('eb_core_ssu_admission_index') }}" class="btn btn-default pull-right">Back to Admission list</a>
+                    <h2>Student List</h2>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Pin</th>
+                            <th>City</th>
+                            <th>Attended At</th>
+                            <th>B.A.G.</th>
+                            <th>B.M.G.</th>
+                            <th>A.E.G.</th>
+                            <th>Final Grade</th>
+                            <th>Result</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for admissionAttendee in admissionAttendees %}
+                            {% set studentUser = admissionAttendee.studentUser %}
+                            <tr>
+                                <td>{{ studentUser.id }}</td>
+                                <td>{{ studentUser.email }}</td>
+                                <td>{{ studentUser.firstName }}</td>
+                                <td>{{ studentUser.lastName }}</td>
+                                <td>{{ studentUser.pin }}</td>
+                                <td>{{ studentUser.city }}</td>
+                                <td>{% if admissionAttendee.createdAt %}{{ admissionAttendee.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                                <td>{{ admissionAttendee.baccalaureateAverageGrade }}</td>
+                                <td>{{ admissionAttendee.baccalaureateMaximumGrade }}</td>
+                                <td>{{ admissionAttendee.admissionExamGrade }}</td>
+                                <td>{{ admissionAttendee.finalGrade }}</td>
+                                <td>{{ admissionAttendee.getResultAsString }}</td>
+                                <td>
+                                    <a href="{{ path('eb_core_ssu_admission_edit_student', {'admissionId': admission.id, 'admissionAttendeeId': admissionAttendee.id}) }}" class="btn btn-warning btn-xs">edit</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

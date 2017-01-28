@@ -14,13 +14,15 @@ use EB\UserBundle\Entity\StudentUser;
 class AdmissionAttendee
 {
     const RESULT_ATTENDED = 0;
-    const RESULT_REJECTED = 1;
-    const RESULT_ACCEPTED_FEE = 2;
-    const RESULT_ACCEPTED_BUDGET = 3;
+    const RESULT_VERIFIED = 1; // the Student data is checked, and he can be used in the Admission process
+    const RESULT_REJECTED = 2;
+    const RESULT_ACCEPTED_FEE = 3;
+    const RESULT_ACCEPTED_BUDGET = 4;
 
-    /** @var array $statusArr */
-    public static $statusArr = [
+    /** @var array $resultArr */
+    public static $resultArr = [
         self::RESULT_ATTENDED => 'Attended',
+        self::RESULT_VERIFIED => 'Verified',
         self::RESULT_REJECTED => 'Rejected',
         self::RESULT_ACCEPTED_FEE => 'Accepted Fee',
         self::RESULT_ACCEPTED_BUDGET => 'Accepted Budget',
@@ -217,6 +219,14 @@ class AdmissionAttendee
         $this->result = $result;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResultAsString()
+    {
+        return self::$resultArr[$this->result];
     }
 
     /**

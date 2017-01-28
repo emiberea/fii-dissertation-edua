@@ -42,13 +42,13 @@
                     </tr>
                     <tr>
                         <th>Status</th>
-                        <td>{{ admission.status }}</td>
+                        <td>{{ admission.statusAsString }}</td>
                     </tr>
                 </tbody>
             </table>
 
             <h3>Attend this admission with the following marks:</h3>
-            <p>Update the marks so they advantage you for this school.</p>
+            <div class="alert alert-info"><b>Tip:</b> Update the marks so they advantage you for this school.</div>
             {{ form_start(form) }}
                 {{ form_row(form.baccalaureateAverageGrade, {'value': student.baccalaureateAverageGrade}) }}
                 {{ form_row(form.baccalaureateMaximumGrade, {'value': student.baccalaureateMaximumGrade}) }}

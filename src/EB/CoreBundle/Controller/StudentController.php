@@ -51,7 +51,9 @@ class StudentController extends Controller
         $student = $this->getUser();
 
         $admissionAttendee = new AdmissionAttendee();
-        $form = $this->createForm(AdmissionAttendeeType::class, $admissionAttendee);
+        $form = $this->createForm(AdmissionAttendeeType::class, $admissionAttendee, [
+            'form_type' => AdmissionAttendeeType::FORM_TYPE_PARTIAL,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -96,7 +98,6 @@ class StudentController extends Controller
      */
     public function viewAttendedAdmissionAction(Admission $admission)
     {
-
         /** @var StudentUser $student */
         $student = $this->getUser();
 

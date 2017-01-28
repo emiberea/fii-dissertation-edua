@@ -3,9 +3,12 @@
 namespace EB\CoreBundle\Controller;
 
 use EB\CoreBundle\Entity\Admission;
+use EB\CoreBundle\Entity\AdmissionAttendee;
+use EB\CoreBundle\Form\Type\AdmissionAttendeeType;
 use EB\CoreBundle\Form\Type\AdmissionType;
 use EB\UserBundle\Entity\SchoolStaffUser;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -187,5 +190,70 @@ class SchoolStaffUserController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/admission/{id}/students", name="eb_core_ssu_admission_view_students")
+     * @Method("GET")
+     */
+    public function admissionViewStudentsAction(Admission $admission)
+    {
+        /** @var SchoolStaffUser $schoolStaffUser */
+        $schoolStaffUser = $this->getUser();
+        $school = $schoolStaffUser->getSchool();
+        if (!$school) {
+            throw $this->createNotFoundException('School not found.');
+        }
+        if ($school !== $admission->getSchool()) {
+            throw $this->createAccessDeniedException('Admission does not belong to your school.');
+        }
+
+        return $this->render('EBCoreBundle:SchoolStaffUser:admissionViewStudents.html.twig', array(
+            'admission' => $admission,
+            'admissionAttendees' => $admission->getAdmissionAttendees(),
+        ));
+    }
+
+    /**
+     * @ParamConverter("admission", class="EBCoreBundle:Admission", options={"id"="admissionId"})
+     * @ParamConverter("admissionAttendee", class="EBCoreBundle:AdmissionAttendee", options={"id"="admissionAttendeeId"})
+     * @Route("/admission/{admissionId}/students/{admissionAttendeeId}", name="eb_core_ssu_admission_edit_student")
+     * @Method({"GET", "POST"})
+     */
+    public function admissionEditStudentAction(Request $request, Admission $admission, AdmissionAttendee $admissionAttendee)
+    {
+        /** @var SchoolStaffUser $schoolStaffUser */
+        $schoolStaffUser = $this->getUser();
+        $school = $schoolStaffUser->getSchool();
+        if (!$school) {
+            throw $this->createNotFoundException('School not found.');
+        }
+        if ($school !== $admission->getSchool()) {
+            throw $this->createAccessDeniedException('Admission does not belong to your school.');
+        }
+
+        $form = $this->createForm(AdmissionAttendeeType::class, $admissionAttendee, [
+            'form_type' => AdmissionAttendeeType::FORM_TYPE_FULL,
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($admissionAttendee);
+            $em->flush();
+
+            $this->addFlash('success', 'Attending student edited successfully!');
+
+            return $this->redirectToRoute('eb_core_ssu_admission_edit_student', [
+                'admissionId' => $admission->getId(),
+                'admissionAttendeeId' => $admissionAttendee->getId(),
+            ]);
+        }
+
+        return $this->render('EBCoreBundle:SchoolStaffUser:admissionEditStudent.html.twig', array(
+            'admission' => $admission,
+            'student' => $admissionAttendee->getStudentUser(),
+            'form' => $form->createView(),
+        ));
     }
 }
