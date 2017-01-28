@@ -2,40 +2,74 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <h2>School #{{ school.id }}</h2>
             <table class="table">
                 <thead></thead>
                 <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ school.id }}</td>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <td>{{ school.name }}</td>
-                </tr>
-                <tr>
-                    <th>Country</th>
-                    <td>{{ school.country }}</td>
-                </tr>
-                <tr>
-                    <th>City</th>
-                    <td>{{ school.city }}</td>
-                </tr>
-                <tr>
-                    <th>Address</th>
-                    <td>{{ school.address }}</td>
-                </tr>
-                <tr>
-                    <th>Type</th>
-                    <td>{{ school.type }}</td>
-                </tr>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ school.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ school.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <td>{{ school.country }}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{ school.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ school.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td>{{ school.type }}</td>
+                    </tr>
                 </tbody>
             </table>
 
-            <p>Admission sessions for this school:</p>
-            {# @TODO: add table with admissions for this school #}
+            <h4>Other administrations of this school:</h4>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>School Staff User List</h2>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Title</th>
+                            <th>Job Title</th>
+                            <th>Academic Degree</th>
+                            <th>School</th>
+                            <th>Enabled</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for schoolStaffUser in school.schoolStaffUsers %}
+                            <tr{% if app.user == schoolStaffUser %} class="success"{% endif %}>
+                                <td>{{ schoolStaffUser.id }}</td>
+                                <td>{{ schoolStaffUser.email }}</td>
+                                <td>{{ schoolStaffUser.firstName }}</td>
+                                <td>{{ schoolStaffUser.lastName }}</td>
+                                <td>{{ schoolStaffUser.title }}</td>
+                                <td>{{ schoolStaffUser.jobTitle }}</td>
+                                <td>{{ schoolStaffUser.academicDegree }}</td>
+                                <td>{{ schoolStaffUser.school.name }}</td>
+                                <td>{% if schoolStaffUser.enabled %}Yes{% else %}No{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -11,12 +11,11 @@
                     <thead>
                         <tr>
                             <th>Id</th>
+                            <th>Email</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Father Initial</th>
                             <th>Pin</th>
                             <th>City</th>
-                            <th>Address</th>
                             <th>High School</th>
                             <th>Specialization</th>
                             <th>B.A.G.</th>
@@ -30,12 +29,11 @@
                         {% for studentUser in studentUsers %}
                             <tr>
                                 <td><a href="{{ path('eb_admin_student_show', { 'id': studentUser.id }) }}">{{ studentUser.id }}</a></td>
+                                <td>{{ studentUser.email }}</td>
                                 <td>{{ studentUser.firstName }}</td>
                                 <td>{{ studentUser.lastName }}</td>
-                                <td>{{ studentUser.fatherInitial }}</td>
                                 <td>{{ studentUser.pin }}</td>
                                 <td>{{ studentUser.city }}</td>
-                                <td>{{ studentUser.address }}</td>
                                 <td>{{ studentUser.highSchool }}</td>
                                 <td>{{ studentUser.specialization }}</td>
                                 <td>{{ studentUser.baccalaureateAverageGrade }}</td>
