@@ -137,6 +137,7 @@ class SchoolStaffUserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            // @TODO: add some integrity checks that all attending students were verified
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Admission edited successfully!');
 

@@ -14,12 +14,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Admission
 {
     const STATUS_OPEN = 0;
-    const STATUS_PROCESSING = 1;
-    const STATUS_CLOSED = 2;
+    const STATUS_READY_TO_PROCESS = 1;
+    const STATUS_PROCESSING = 2;
+    const STATUS_CLOSED = 3;
 
     /** @var array $statusArr */
     public static $statusArr = [
         self::STATUS_OPEN => 'Open',
+        self::STATUS_READY_TO_PROCESS => 'Ready to Process',
         self::STATUS_PROCESSING => 'Processing',
         self::STATUS_CLOSED => 'Closed',
     ];
