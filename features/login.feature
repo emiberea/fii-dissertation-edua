@@ -11,7 +11,7 @@ Feature: Login
     Then I should be on "/login"
     And I should see "Login"
     And I should see "Forgot your password?"
-    When I fill in "username" with "emi.berea+student1@gmail.com"
+    When I fill in "username" with "emi.berea+student-1@gmail.com"
     And I fill in "password" with "12345"
     And I press "Log in"
     Then I should be on "/"
