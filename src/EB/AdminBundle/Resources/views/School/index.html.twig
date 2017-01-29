@@ -22,8 +22,8 @@
                     <tbody>
                         {% for school in schools %}
                             <tr>
-                                <td><a href="{{ path('eb_admin_school_show', { 'id': school.id }) }}">{{ school.id }}</a></td>
-                                <td>{{ school.name }}</td>
+                                <td>{{ school.id }}</td>
+                                <td><a href="{{ path('eb_admin_school_show', { 'id': school.id }) }}">{{ school.name }}</a></td>
                                 <td>{{ school.country }}</td>
                                 <td>{{ school.city }}</td>
                                 <td>{{ school.address }}</td>

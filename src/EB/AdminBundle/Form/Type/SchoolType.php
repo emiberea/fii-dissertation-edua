@@ -4,6 +4,7 @@ namespace EB\AdminBundle\Form\Type;
 
 use EB\CoreBundle\Entity\School;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,7 +20,9 @@ class SchoolType extends AbstractType
             ->add('country')
             ->add('city')
             ->add('address')
-            ->add('type')
+            ->add('type', ChoiceType::class, [
+                'choices' => School::$typeArr,
+            ])
         ;
     }
 

@@ -28,8 +28,8 @@
                     <tbody>
                         {% for studentUser in studentUsers %}
                             <tr>
-                                <td><a href="{{ path('eb_admin_student_show', { 'id': studentUser.id }) }}">{{ studentUser.id }}</a></td>
-                                <td>{{ studentUser.email }}</td>
+                                <td>{{ studentUser.id }}</td>
+                                <td><a href="{{ path('eb_admin_student_show', { 'id': studentUser.id }) }}">{{ studentUser.email }}</a></td>
                                 <td>{{ studentUser.firstName }}</td>
                                 <td>{{ studentUser.lastName }}</td>
                                 <td>{{ studentUser.pin }}</td>
