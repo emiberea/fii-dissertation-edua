@@ -11,12 +11,10 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Created At</th>
+                            <th>School</th>
                             <th>Session Date</th>
                             <th>Budget Financed No</th>
                             <th>Fee Payer No</th>
-                            <th>Budget / Fee Threshold</th>
-                            <th>Fee / Rejected No</th>
                             <th>Closest At</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -25,26 +23,24 @@
                     <tbody>
                         {% for admission in pagination %}
                             <tr>
-                                <td><a href="{{ path('eb_core_ssu_admission_show', { 'id': admission.id }) }}">{{ admission.id }}</a></td>
-                                <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                                <td><a href="{{ path('eb_admin_admission_show', { 'id': admission.id }) }}">{{ admission.id }}</a></td>
+                                <td><a href="{{ path('eb_admin_school_show', { 'id': admission.school.id }) }}">{{ admission.school.name }}</a></td>
                                 <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('d-m-Y') }}{% else %}-{% endif %}</td>
                                 <td>{{ admission.budgetFinancedNo }}</td>
                                 <td>{{ admission.feePayerNo }}</td>
-                                <td>{{ admission.budgetFeeThreshold }}</td>
-                                <td>{{ admission.feeRejectedThreshold }}</td>
                                 <td>{{ admission.closedAt }}</td>
                                 <td>{{ admission.getStatusAsString }}</td>
                                 <td>
-                                    <a href="{{ path('eb_core_ssu_admission_show', { 'id': admission.id }) }}" class="btn btn-info btn-xs">Show</a>
-                                    <a href="{{ path('eb_core_ssu_admission_edit', { 'id': admission.id }) }}" class="btn btn-warning btn-xs">Edit</a>
-                                    <a href="{{ path('eb_core_ssu_admission_view_students', { 'id': admission.id }) }}" class="btn btn-info btn-xs">Students</a>
+                                    <a href="{{ path('eb_admin_admission_show', { 'id': admission.id }) }}" class="btn btn-info btn-xs">Show</a>
+                                    <a href="{{ path('eb_admin_admission_edit', { 'id': admission.id }) }}" class="btn btn-warning btn-xs">Edit</a>
+                                    <a href="{{ path('eb_admin_admission_view_students', { 'id': admission.id }) }}" class="btn btn-info btn-xs">Students</a>
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
                 <div class="panel-footer">
-                    <a href="{{ path('eb_core_ssu_admission_new') }}" class="btn btn-default">Add Admission</a>
+                    <a href="{{ path('eb_admin_admission_new') }}" class="btn btn-default">Add Admission</a>
                 </div>
             </div>
             {{ knp_pagination_render(pagination) }}

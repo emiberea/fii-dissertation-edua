@@ -43,7 +43,7 @@
                                 <td>{{ admissionAttendee.finalGrade }}</td>
                                 <td>{{ admissionAttendee.getResultAsString }}</td>
                                 <td>
-                                    <a href="{{ path('eb_core_ssu_admission_edit_student', {'admissionId': admission.id, 'admissionAttendeeId': admissionAttendee.id}) }}" class="btn btn-warning btn-xs">edit</a>
+                                    <a href="{{ path('eb_core_ssu_admission_edit_student', {'admissionId': admission.id, 'admissionAttendeeId': admissionAttendee.id}) }}" class="btn btn-warning btn-xs">Edit</a>
                                 </td>
                             </tr>
                         {% endfor %}

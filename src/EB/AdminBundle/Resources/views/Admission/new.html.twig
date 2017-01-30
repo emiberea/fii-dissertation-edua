@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <a href="{{ path('eb_admin_admission_index') }}" class="btn btn-default pull-right">Back to the list</a>
+            <h2>Admission Creation</h2>
+
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input type="submit" value="Create" class="btn btn-success" />
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

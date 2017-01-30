@@ -5,6 +5,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    <a href="{{ path('eb_admin_admission_index') }}" class="btn btn-default pull-right">Back to Admission list</a>
                     <h2>Student List</h2>
                 </div>
                 <table class="table table-striped">
@@ -16,41 +17,38 @@
                             <th>Last Name</th>
                             <th>Pin</th>
                             <th>City</th>
-                            <th>High School</th>
-                            <th>Specialization</th>
+                            <th>Attended At</th>
                             <th>B.A.G.</th>
                             <th>B.M.G.</th>
-                            <th>Enabled</th>
-                            <th>Verified</th>
+                            <th>A.E.G.</th>
+                            <th>Final Grade</th>
+                            <th>Result</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for studentUser in pagination %}
+                        {% for admissionAttendee in pagination %}
+                            {% set studentUser = admissionAttendee.studentUser %}
                             <tr>
                                 <td>{{ studentUser.id }}</td>
-                                <td><a href="{{ path('eb_admin_student_show', { 'id': studentUser.id }) }}">{{ studentUser.email }}</a></td>
+                                <td>{{ studentUser.email }}</td>
                                 <td>{{ studentUser.firstName }}</td>
                                 <td>{{ studentUser.lastName }}</td>
                                 <td>{{ studentUser.pin }}</td>
                                 <td>{{ studentUser.city }}</td>
-                                <td>{{ studentUser.highSchool }}</td>
-                                <td>{{ studentUser.specialization }}</td>
-                                <td>{{ studentUser.baccalaureateAverageGrade }}</td>
-                                <td>{{ studentUser.baccalaureateMaximumGrade }}</td>
-                                <td>{% if studentUser.enabled %}Yes{% else %}No{% endif %}</td>
-                                <td>{% if studentUser.verified %}Yes{% else %}No{% endif %}</td>
+                                <td>{% if admissionAttendee.createdAt %}{{ admissionAttendee.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                                <td>{{ admissionAttendee.baccalaureateAverageGrade }}</td>
+                                <td>{{ admissionAttendee.baccalaureateMaximumGrade }}</td>
+                                <td>{{ admissionAttendee.admissionExamGrade }}</td>
+                                <td>{{ admissionAttendee.finalGrade }}</td>
+                                <td>{{ admissionAttendee.getResultAsString }}</td>
                                 <td>
-                                    <a href="{{ path('eb_admin_student_show', { 'id': studentUser.id }) }}" class="btn btn-info btn-xs">Show</a>
-                                    <a href="{{ path('eb_admin_student_edit', { 'id': studentUser.id }) }}" class="btn btn-warning btn-xs">Edit</a>
+                                    <a href="{{ path('eb_admin_student_edit', {'id': admissionAttendee.studentUser.id}) }}" class="btn btn-warning btn-xs">Edit</a>
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                <div class="panel-footer">
-                    <a href="{{ path('eb_admin_student_new') }}" class="btn btn-default">Add Student</a>
-                </div>
             </div>
             {{ knp_pagination_render(pagination) }}
         </div>

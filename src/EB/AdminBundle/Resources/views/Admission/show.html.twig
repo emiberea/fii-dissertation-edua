@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <a href="{{ path('eb_admin_admission_index') }}" class="btn btn-default pull-right">Back to the list</a>
+            <h2>Admission #{{ admission.id }}</h2>
+            <table class="table">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ admission.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Created At</th>
+                        <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Session Date</th>
+                        <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Budget Financed No</th>
+                        <td>{{ admission.budgetFinancedNo }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fee Payer No</th>
+                        <td>{{ admission.feePayerNo }}</td>
+                    </tr>
+                    <tr>
+                        <th>Budget / Fee Threshold</th>
+                        <td>{{ admission.budgetFeeThreshold }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fee / Rejected No</th>
+                        <td>{{ admission.feeRejectedThreshold }}</td>
+                    </tr>
+                    <tr>
+                        <th>Closest At</th>
+                        <td>{{ admission.closedAt }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ admission.statusAsString }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="{{ path('eb_admin_admission_edit', { 'id': admission.id }) }}" class="btn btn-warning">Edit</a>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}
