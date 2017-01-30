@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for admission in admissions %}
+                        {% for admission in pagination %}
                             <tr{% if admission.id in admissionAttendeeArr %} class="info"{% endif %}>
                                 <td>{{ admission.id }}</td>
                                 <td>{{ admission.school }}</td>
@@ -46,6 +46,7 @@
                     </tbody>
                 </table>
             </div>
+            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %}

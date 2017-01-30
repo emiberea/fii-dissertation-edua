@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for school in schools %}
+                        {% for school in pagination %}
                             <tr>
                                 <td>{{ school.id }}</td>
                                 <td><a href="{{ path('eb_admin_school_show', { 'id': school.id }) }}">{{ school.name }}</a></td>
@@ -40,6 +40,7 @@
                     <a href="{{ path('eb_admin_school_new') }}" class="btn btn-default">Add School</a>
                 </div>
             </div>
+            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %}

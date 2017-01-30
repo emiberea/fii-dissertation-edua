@@ -38,7 +38,7 @@ class SchoolStaffUserController extends Controller
      * @Route("/admission", name="eb_core_ssu_admission_index")
      * @Method("GET")
      */
-    public function admissionIndexAction()
+    public function admissionIndexAction(Request $request)
     {
         /** @var SchoolStaffUser $schoolStaffUser */
         $schoolStaffUser = $this->getUser();
@@ -52,8 +52,15 @@ class SchoolStaffUserController extends Controller
             'school' => $school,
         ]);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $admissions,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('EBCoreBundle:SchoolStaffUser:admissionIndex.html.twig', array(
-            'admissions' => $admissions,
+            'pagination' => $pagination,
         ));
     }
 
@@ -197,7 +204,7 @@ class SchoolStaffUserController extends Controller
      * @Route("/admission/{id}/students", name="eb_core_ssu_admission_view_students")
      * @Method("GET")
      */
-    public function admissionViewStudentsAction(Admission $admission)
+    public function admissionViewStudentsAction(Request $request, Admission $admission)
     {
         /** @var SchoolStaffUser $schoolStaffUser */
         $schoolStaffUser = $this->getUser();
@@ -209,9 +216,21 @@ class SchoolStaffUserController extends Controller
             throw $this->createAccessDeniedException('Admission does not belong to your school.');
         }
 
+        $em = $this->getDoctrine()->getManager();
+        $admissionAttendees = $em->getRepository('EBCoreBundle:AdmissionAttendee')->findBy([
+            'admission' => $admission,
+        ]);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $admissionAttendees,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('EBCoreBundle:SchoolStaffUser:admissionViewStudents.html.twig', array(
             'admission' => $admission,
-            'admissionAttendees' => $admission->getAdmissionAttendees(),
+            'pagination' => $pagination,
         ));
     }
 

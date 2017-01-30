@@ -23,7 +23,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "v2.0.0-beta1",
         "pugx/multi-user-bundle": "3.0.*@dev",
-        "tss/automailer-bundle": "dev-master"
+        "tss/automailer-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "^2.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

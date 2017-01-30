@@ -20,14 +20,21 @@ class SchoolController extends Controller
      * @Route("/", name="eb_admin_school_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $schools = $em->getRepository('EBCoreBundle:School')->findAll();
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $schools,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('EBAdminBundle:School:index.html.twig', array(
-            'schools' => $schools,
+            'pagination' => $pagination,
         ));
     }
 

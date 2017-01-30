@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for admission in admissions %}
+                        {% for admission in pagination %}
                             <tr>
                                 <td><a href="{{ path('eb_core_ssu_admission_show', { 'id': admission.id }) }}">{{ admission.id }}</a></td>
                                 <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
@@ -47,6 +47,7 @@
                     <a href="{{ path('eb_core_ssu_admission_new') }}" class="btn btn-default">Add Admission</a>
                 </div>
             </div>
+            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %}

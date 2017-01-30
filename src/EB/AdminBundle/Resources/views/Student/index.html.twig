@@ -26,7 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for studentUser in studentUsers %}
+                        {% for studentUser in pagination %}
                             <tr>
                                 <td>{{ studentUser.id }}</td>
                                 <td><a href="{{ path('eb_admin_student_show', { 'id': studentUser.id }) }}">{{ studentUser.email }}</a></td>
@@ -52,6 +52,7 @@
                     <a href="{{ path('eb_admin_student_new') }}" class="btn btn-default">Add Student</a>
                 </div>
             </div>
+            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %}

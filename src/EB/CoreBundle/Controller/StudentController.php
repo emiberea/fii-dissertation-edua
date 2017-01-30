@@ -20,7 +20,7 @@ class StudentController extends Controller
      * @Route("/open-admissions", name="eb_core_student_open_admissions")
      * @Method("GET")
      */
-    public function openAdmissionsAction()
+    public function openAdmissionsAction(Request $request)
     {
         /** @var StudentUser $student */
         $student = $this->getUser();
@@ -30,13 +30,20 @@ class StudentController extends Controller
             'status' => Admission::STATUS_OPEN,
         ]);
 
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $admissions,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         $admissionAttendeeArr = [];
         foreach ($student->getAdmissionAttendees() as $admissionAttendee) {
             $admissionAttendeeArr[] = $admissionAttendee->getAdmission()->getId();
         }
 
         return $this->render('EBCoreBundle:Student:openAdmissions.html.twig', array(
-            'admissions' => $admissions,
+            'pagination' => $pagination,
             'admissionAttendeeArr' => $admissionAttendeeArr,
         ));
     }
@@ -80,15 +87,22 @@ class StudentController extends Controller
      * @Route("/attended-admissions", name="eb_core_student_attended_admissions")
      * @Method("GET")
      */
-    public function attendedAdmissionsAction()
+    public function attendedAdmissionsAction(Request $request)
     {
         /** @var StudentUser $student */
         $student = $this->getUser();
         $admissionAttendees = $student->getAdmissionAttendees();
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $admissionAttendees,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('EBCoreBundle:Student:attendedAdmissions.html.twig', array(
             'student' => $student,
-            'admissionAttendees' => $admissionAttendees,
+            'pagination' => $pagination,
         ));
     }
 

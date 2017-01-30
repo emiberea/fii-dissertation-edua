@@ -20,14 +20,21 @@ class StudentController extends Controller
      * @Route("/", name="eb_admin_student_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $studentUsers = $em->getRepository('EBUserBundle:StudentUser')->findAll();
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $studentUsers,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('EBAdminBundle:Student:index.html.twig', array(
-            'studentUsers' => $studentUsers,
+            'pagination' => $pagination,
         ));
     }
 

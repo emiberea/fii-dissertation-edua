@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for schoolStaffUser in schoolStaffUsers %}
+                        {% for schoolStaffUser in pagination %}
                             <tr>
                                 <td>{{ schoolStaffUser.id }}</td>
                                 <td><a href="{{ path('eb_admin_ssu_show', { 'id': schoolStaffUser.id }) }}">{{ schoolStaffUser.email }}</a></td>
@@ -50,6 +50,7 @@
                     <a href="{{ path('eb_admin_ssu_new') }}" class="btn btn-default">Add School Staff User</a>
                 </div>
             </div>
+            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %}

@@ -27,7 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for admissionAttendee in admissionAttendees %}
+                        {% for admissionAttendee in pagination %}
                             {% set studentUser = admissionAttendee.studentUser %}
                             <tr>
                                 <td>{{ studentUser.id }}</td>
@@ -50,6 +50,7 @@
                     </tbody>
                 </table>
             </div>
+            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %}

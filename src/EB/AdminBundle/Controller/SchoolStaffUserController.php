@@ -20,14 +20,21 @@ class SchoolStaffUserController extends Controller
      * @Route("/", name="eb_admin_ssu_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $schoolStaffUsers = $em->getRepository('EBUserBundle:SchoolStaffUser')->findAll();
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $schoolStaffUsers,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('EBAdminBundle:SchoolStaffUser:index.html.twig', array(
-            'schoolStaffUsers' => $schoolStaffUsers,
+            'pagination' => $pagination,
         ));
     }
 

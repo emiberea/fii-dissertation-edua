@@ -29,7 +29,7 @@ class SchoolStaffUserType extends AbstractType
             ->add('school')
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */

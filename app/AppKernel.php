@@ -19,6 +19,7 @@ class AppKernel extends Kernel
 
             // 3rd party bundles
             new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
             new TSS\AutomailerBundle\TSSAutomailerBundle(),
 

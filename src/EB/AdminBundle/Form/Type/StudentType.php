@@ -35,7 +35,7 @@ class StudentType extends AbstractType
             ->add('verified')
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
