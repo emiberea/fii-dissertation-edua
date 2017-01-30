@@ -46,10 +46,21 @@ class CloseAdmissionCommand extends ContainerAwareCommand
 
         $admissionAttendees = $admission->getAdmissionAttendees();
 
+        $batchSize = 20;
+        $i = 0;
         foreach ($admissionAttendees as $admissionAttendee) {
-            var_dump($admissionAttendee);
+            $finalGrade = 0.5 * $admissionAttendee->getAdmissionExamGrade() + 0.25 * $admissionAttendee->getBaccalaureateAverageGrade() + 0.25 * $admissionAttendee->getBaccalaureateMaximumGrade();
+            $admissionAttendee->setAdmissionExamGrade($finalGrade);
+
+            $this->em->persist($admissionAttendee);
+
+            if (($i % $batchSize) === 0) {
+                $this->em->flush(); // Executes all updates.
+                $this->em->clear(); // Detaches all objects from Doctrine!
+            }
+            ++$i;
         }
 
-//        var_dump($admission);
+        $this->em->flush();
     }
 }

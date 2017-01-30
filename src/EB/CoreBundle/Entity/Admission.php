@@ -80,7 +80,7 @@ class Admission
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="closed_at", type="datetime", nullable=true)
+     * @ORM\Column(name="closed_at", type="date", nullable=true)
      */
     private $closedAt;
 

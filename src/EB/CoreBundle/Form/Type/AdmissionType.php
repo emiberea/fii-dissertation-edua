@@ -17,6 +17,7 @@ class AdmissionType extends AbstractType
     {
         $builder
             ->add('sessionDate')
+            ->add('closedAt')
             ->add('budgetFinancedNo')
             ->add('feePayerNo')
             ->add('budgetFeeThreshold')
