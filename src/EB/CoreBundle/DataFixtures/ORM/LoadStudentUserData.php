@@ -4,6 +4,7 @@ namespace EB\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use EB\UserBundle\Entity\AbstractUser;
 use EB\UserBundle\Entity\StudentUser;
 
 class LoadStudentUserData extends BaseFixture implements OrderedFixtureInterface
@@ -21,6 +22,7 @@ class LoadStudentUserData extends BaseFixture implements OrderedFixtureInterface
             $studentUser->addRole('ROLE_STUDENT');
             $studentUser->setFirstName($this->faker->firstName);
             $studentUser->setLastName($this->faker->lastName);
+            $studentUser->setTitle(array_rand(AbstractUser::$titleArr));
             $studentUser->setFatherInitial(strtoupper($this->faker->randomLetter));
             $studentUser->setPin($this->faker->randomNumber(8));
             $studentUser->setCity($this->faker->city);

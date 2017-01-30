@@ -23,7 +23,7 @@ class StudentProfileController extends Controller
         /** @var StudentUser $student */
         $student = $this->getUser();
         if (!($student instanceof StudentUser)) {
-            return $this->createAccessDeniedException('The logged user is not a Student.');
+            throw $this->createAccessDeniedException('The logged user is not a Student.');
         }
 
         return [
@@ -40,7 +40,7 @@ class StudentProfileController extends Controller
         /** @var StudentUser $student */
         $student = $this->getUser();
         if (!($student instanceof StudentUser)) {
-            return $this->createAccessDeniedException('The logged user is not a Student.');
+            throw $this->createAccessDeniedException('The logged user is not a Student.');
         }
 
         $form = $this->createForm(StudentProfileType::class, $student);

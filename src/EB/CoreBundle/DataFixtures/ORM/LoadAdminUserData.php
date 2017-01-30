@@ -4,6 +4,7 @@ namespace EB\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use EB\UserBundle\Entity\AbstractUser;
 use EB\UserBundle\Entity\AdminUser;
 
 class LoadAdminUserData extends BaseFixture implements OrderedFixtureInterface
@@ -21,6 +22,7 @@ class LoadAdminUserData extends BaseFixture implements OrderedFixtureInterface
             $adminUser->addRole('ROLE_ADMIN');
             $adminUser->setFirstName($this->faker->firstName);
             $adminUser->setLastName($this->faker->lastName);
+            $adminUser->setTitle(array_rand(AbstractUser::$titleArr));
 
             $this->addReference('admin-user-' . $i, $adminUser);
             $manager->persist($adminUser);

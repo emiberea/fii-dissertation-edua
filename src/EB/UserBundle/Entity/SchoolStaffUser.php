@@ -17,14 +17,6 @@ use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
  */
 class SchoolStaffUser extends AbstractUser
 {
-    const TITLE_MALE = 'mr';
-    const TITLE_FEMALE = 'ms';
-
-    public static $titleArr = [
-        self::TITLE_MALE => 'Mr.',
-        self::TITLE_FEMALE => 'Ms.',
-    ];
-
     /**
      * @var int
      *
@@ -33,13 +25,6 @@ class SchoolStaffUser extends AbstractUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
 
     /**
      * @var string
@@ -61,25 +46,6 @@ class SchoolStaffUser extends AbstractUser
      * @ORM\ManyToOne(targetEntity="EB\CoreBundle\Entity\School", inversedBy="schoolStaffUsers")
      */
     private $school;
-
-    /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param string $title
-     * @return $this
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
 
     /**
      * @return string

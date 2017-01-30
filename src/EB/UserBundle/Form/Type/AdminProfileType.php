@@ -3,13 +3,13 @@
 namespace EB\UserBundle\Form\Type;
 
 use EB\UserBundle\Entity\AbstractUser;
+use EB\UserBundle\Entity\AdminUser;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RegistrationStudentType extends AbstractType
+class AdminProfileType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -20,19 +20,22 @@ class RegistrationStudentType extends AbstractType
         // custom fields
         $builder
             ->remove('username')
+            ->add('firstName')
+            ->add('lastName')
             ->add('title', ChoiceType::class, [
                 'choices' => AbstractUser::$titleArr,
             ])
-            ->add('firstName')
-            ->add('lastName')
-            ->add('terms', CheckboxType::class, array(
-                'mapped' => false,
-                'label' => 'Terms and Conditions',
-                'constraints' => array(
-                    new Assert\IsTrue(array('message' => 'In order to use our services, you must agree to our Terms and Conditions.'))
-                ),
-            ))
         ;
+    }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => AdminUser::class,
+        ));
     }
 
     /**
@@ -40,7 +43,7 @@ class RegistrationStudentType extends AbstractType
      */
     public function getParent()
     {
-        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+        return 'FOS\UserBundle\Form\Type\ProfileFormType';
     }
 
     /**
@@ -48,7 +51,7 @@ class RegistrationStudentType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'eb_user_registration_student';
+        return 'eb_user_admin_profile';
     }
 
     /**

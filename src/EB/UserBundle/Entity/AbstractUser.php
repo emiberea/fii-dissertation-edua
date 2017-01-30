@@ -23,6 +23,15 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 abstract class AbstractUser extends BaseUser
 {
+    const TITLE_MALE = 'mr';
+    const TITLE_FEMALE = 'ms';
+
+    /** @var array $titleArr */
+    public static $titleArr = [
+        self::TITLE_MALE => 'Mr.',
+        self::TITLE_FEMALE => 'Ms.',
+    ];
+
     /**
      * @var int
      *
@@ -45,6 +54,13 @@ abstract class AbstractUser extends BaseUser
      * @ORM\Column(name="last_name", type="string", length=255)
      */
     private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
 
     /**
      * @var ArrayCollection
@@ -128,6 +144,25 @@ abstract class AbstractUser extends BaseUser
     public function getFullName()
     {
         return $this->firstName. ' ' . $this->lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
     }
 
     /**

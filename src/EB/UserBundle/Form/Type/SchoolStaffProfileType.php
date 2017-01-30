@@ -2,8 +2,10 @@
 
 namespace EB\UserBundle\Form\Type;
 
+use EB\UserBundle\Entity\AbstractUser;
 use EB\UserBundle\Entity\SchoolStaffUser;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,7 +22,9 @@ class SchoolStaffProfileType extends AbstractType
             ->remove('username')
             ->add('firstName')
             ->add('lastName')
-            ->add('title')
+            ->add('title', ChoiceType::class, [
+                'choices' => AbstractUser::$titleArr,
+            ])
             ->add('jobTitle')
             ->add('academicDegree')
         ;

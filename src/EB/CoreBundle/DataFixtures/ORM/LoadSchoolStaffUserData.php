@@ -4,6 +4,7 @@ namespace EB\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use EB\UserBundle\Entity\AbstractUser;
 use EB\UserBundle\Entity\SchoolStaffUser;
 
 class LoadSchoolStaffUserData extends BaseFixture implements OrderedFixtureInterface
@@ -21,7 +22,7 @@ class LoadSchoolStaffUserData extends BaseFixture implements OrderedFixtureInter
             $schoolStaffUser->addRole('ROLE_SSU');
             $schoolStaffUser->setFirstName($this->faker->firstName);
             $schoolStaffUser->setLastName($this->faker->lastName);
-            $schoolStaffUser->setTitle($this->faker->title);
+            $schoolStaffUser->setTitle(array_rand(AbstractUser::$titleArr));
             $schoolStaffUser->setJobTitle($this->faker->jobTitle);
             $schoolStaffUser->setAcademicDegree($this->faker->text(20));
 

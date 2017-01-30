@@ -3,6 +3,7 @@
 namespace EB\UserBundle\Controller;
 
 use EB\UserBundle\Entity\AbstractUser;
+use EB\UserBundle\Entity\AdminUser;
 use EB\UserBundle\Entity\SchoolStaffUser;
 use EB\UserBundle\Entity\StudentUser;
 use FOS\UserBundle\Controller\ProfileController as BaseController;
@@ -23,6 +24,8 @@ class ProfileController extends BaseController
             return $this->redirectToRoute('eb_user_student_profile_show');
         } elseif ($user instanceof SchoolStaffUser) {
             return $this->redirectToRoute('eb_user_school_staff_profile_show');
+        } elseif ($user instanceof AdminUser) {
+            return $this->redirectToRoute('eb_user_admin_profile_show');
         } else {
             throw $this->createNotFoundException('Profile page for user not found.');
         }
@@ -42,6 +45,8 @@ class ProfileController extends BaseController
             return $this->redirectToRoute('eb_user_student_profile_edit');
         } elseif ($user instanceof SchoolStaffUser) {
             return $this->redirectToRoute('eb_user_school_staff_profile_edit');
+        } elseif ($user instanceof AdminUser) {
+            return $this->redirectToRoute('eb_user_admin_profile_edit');
         } else {
             throw $this->createNotFoundException('Profile edit page for user not found.');
         }
