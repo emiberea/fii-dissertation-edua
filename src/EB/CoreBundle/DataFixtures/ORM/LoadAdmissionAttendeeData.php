@@ -18,6 +18,11 @@ class LoadAdmissionAttendeeData extends BaseFixture implements OrderedFixtureInt
             $admissionAttendee->setBaccalaureateAverageGrade($this->faker->numberBetween(6, 10));
             $admissionAttendee->setBaccalaureateMaximumGrade($this->faker->numberBetween(6, 10));
 
+            if ($i <= FixtureConfig::MAX_ADMISSION_ATTENDEES * 0.75) {
+                $admissionAttendee->setAdmissionExamGrade($this->faker->numberBetween(6, 10));
+                $admissionAttendee->setResult(AdmissionAttendee::RESULT_VERIFIED);
+            }
+
             $randomAdmissionNo = mt_rand(1, FixtureConfig::MAX_ADMISSIONS); // number between 0 and max (0, max]
             $admissionAttendee->setAdmission($this->getReference('admission-' . $randomAdmissionNo));
             $randomStudentNo = mt_rand(1, FixtureConfig::MAX_STUDENTS_USERS); // number between 0 and max (0, max]

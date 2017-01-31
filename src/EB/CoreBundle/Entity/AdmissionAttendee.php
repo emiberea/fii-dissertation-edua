@@ -82,14 +82,14 @@ class AdmissionAttendee
     /**
      * @var Admission
      *
-     * @ORM\ManyToOne(targetEntity="EB\CoreBundle\Entity\Admission", inversedBy="admissionAttendees")
+     * @ORM\ManyToOne(targetEntity="EB\CoreBundle\Entity\Admission", inversedBy="admissionAttendees", cascade={"persist"})
      */
     private $admission;
 
     /**
      * @var StudentUser
      *
-     * @ORM\ManyToOne(targetEntity="EB\UserBundle\Entity\StudentUser", inversedBy="admissionAttendees")
+     * @ORM\ManyToOne(targetEntity="EB\UserBundle\Entity\StudentUser", inversedBy="admissionAttendees", cascade={"persist"})
      */
     private $studentUser;
 
@@ -97,6 +97,11 @@ class AdmissionAttendee
     {
         $this->createdAt = new \DateTime();
         $this->result = self::RESULT_ATTENDED;
+    }
+
+    public function __toString()
+    {
+        return $this->getResultAsString();
     }
 
     /**

@@ -4,6 +4,7 @@ namespace EB\CoreBundle\Command;
 
 use Doctrine\ORM\EntityManager;
 use EB\CoreBundle\Entity\Admission;
+use EB\CoreBundle\Entity\AdmissionAttendee;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -40,27 +41,49 @@ class CloseAdmissionCommand extends ContainerAwareCommand
 
         // take the first Admission with status STATUS_READY_TO_PROCESS
         /** @var Admission $admission */
-        $admission = $this->em->getRepository('EBCoreBundle:Admission')->findOneBy([
+        $admissions = $this->em->getRepository('EBCoreBundle:Admission')->findBy([
             'status' => Admission::STATUS_READY_TO_PROCESS,
         ]);
 
-        $admissionAttendees = $admission->getAdmissionAttendees();
+        foreach ($admissions as $admission) {
+            $this->processAdmission($admission);
+        }
+    }
 
-        $batchSize = 20;
+    /**
+     * @param Admission $admission
+     */
+    private function processAdmission(Admission $admission)
+    {
+        $admission->setStatus(Admission::STATUS_PROCESSING);
+        $this->em->persist($admission);
+        $this->em->flush();
+
+        $batchSize = 5;
         $i = 0;
+        $admissionAttendees = $admission->getAdmissionAttendees();
         foreach ($admissionAttendees as $admissionAttendee) {
+            if ($admissionAttendee->getResult() !== AdmissionAttendee::RESULT_VERIFIED) {
+                continue;
+            }
+
             $finalGrade = 0.5 * $admissionAttendee->getAdmissionExamGrade() + 0.25 * $admissionAttendee->getBaccalaureateAverageGrade() + 0.25 * $admissionAttendee->getBaccalaureateMaximumGrade();
-            $admissionAttendee->setAdmissionExamGrade($finalGrade);
+            $admissionAttendee->setFinalGrade($finalGrade);
 
             $this->em->persist($admissionAttendee);
 
             if (($i % $batchSize) === 0) {
                 $this->em->flush(); // Executes all updates.
-                $this->em->clear(); // Detaches all objects from Doctrine!
+//                $this->em->clear(); // Detaches all objects from Doctrine!
             }
             ++$i;
         }
 
+        $this->em->flush();
+
+
+        $admission->setStatus(Admission::STATUS_CLOSED);
+        $this->em->persist($admission);
         $this->em->flush();
     }
 }
