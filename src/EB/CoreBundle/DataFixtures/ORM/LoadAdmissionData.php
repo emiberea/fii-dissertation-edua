@@ -15,12 +15,19 @@ class LoadAdmissionData extends BaseFixture implements OrderedFixtureInterface
     {
         for ($i = 1; $i <= FixtureConfig::MAX_ADMISSIONS; $i++) {
             $admission = new Admission();
-            $admission->setSessionDate($this->faker->dateTimeBetween('now', '+5 years'));
             $admission->setBudgetFinancedNo($this->faker->numberBetween(10, 400));
             $admission->setFeePayerNo($this->faker->numberBetween(5, 150));
-            if ($i <= FixtureConfig::MAX_ADMISSIONS * 0.75) {
+            if ($i >= 1 && $i <= 12) {
+                $admission->setSessionDate($this->faker->dateTimeBetween('-5 years', '-1 years'));
+                $admission->setStatus(Admission::STATUS_CLOSED);
+            } elseif ($i >= 13 && $i <= 24) {
+                $admission->setSessionDate($this->faker->dateTimeBetween('now', '+1 years'));
                 $admission->setStatus(Admission::STATUS_READY_TO_PROCESS);
+            } elseif ($i >= 25 && $i <= 30) {
+                $admission->setSessionDate($this->faker->dateTimeBetween('+1 years', '+5 years'));
+                $admission->setStatus(Admission::STATUS_OPEN);
             } else {
+                $admission->setSessionDate($this->faker->dateTimeBetween('now', '+5 years'));
                 $admission->setStatus(array_rand(Admission::$statusArr));
             }
 

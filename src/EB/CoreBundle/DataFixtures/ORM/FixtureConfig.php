@@ -15,9 +15,9 @@ final class FixtureConfig
 
     /** @var array $highSchoolArr */
     public static $highSchoolArr = [
-        'Highschool1',
-        'Highschool2',
-        'Highschool3',
+        'Colegiul National, Iasi',
+        'Colegiul National "Costache Negruzzi", Iasi',
+        'Liceul de Informatica "Grigore Moisil", Iasi',
     ];
 
     /** @var array $specialisationArr */
@@ -40,21 +40,21 @@ final class FixtureConfig
             'name' => 'Facultatea de Economie si Administrare a Afacerilor',
             'country' => 'Romania',
             'city' => 'Iasi',
-            'address' => 'bul. Carol 1, no. 2',
+            'address' => 'bul. Carol 1, no. 11',
             'type' => School::TYPE_FACULTY,
         ],
         [
             'name' => 'Facultatea de Istorie',
             'country' => 'Romania',
             'city' => 'Iasi',
-            'address' => 'bul. Carol 1, no. 3',
+            'address' => 'bul. Carol 1, no. 11',
             'type' => School::TYPE_FACULTY,
         ],
         [
             'name' => 'Facultatea de Automatica si Calculatoare',
             'country' => 'Romania',
             'city' => 'Iasi',
-            'address' => 'bul. Tudor Vladimirescu, no. 120',
+            'address' => 'bul. Dimitrie Mangeron 27',
             'type' => School::TYPE_FACULTY,
         ],
     ];
