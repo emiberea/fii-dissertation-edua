@@ -48,6 +48,7 @@ class CloseAdmissionCommand extends ContainerAwareCommand
         foreach ($admissions as $admission) {
             $this->processAdmission($admission);
             $this->computeAdmissionStats($admission);
+            $this->updateAdmissionStatus($admission);
         }
     }
 
@@ -81,10 +82,6 @@ class CloseAdmissionCommand extends ContainerAwareCommand
         }
 
         $this->em->flush();
-
-        $admission->setStatus(Admission::STATUS_CLOSED);
-        $this->em->persist($admission);
-        $this->em->flush();
     }
 
     /**
@@ -108,14 +105,33 @@ class CloseAdmissionCommand extends ContainerAwareCommand
                 $admissionAttendee->setResult(AdmissionAttendee::RESULT_REJECTED);
             }
 
+            $this->em->persist($admissionAttendee); // Executes all updates.
+
             if (($i % $batchSize) === 0) {
-                $this->em->persist($admissionAttendee); // Executes all updates.
                 $this->em->flush(); // Executes all updates.
 //                $this->em->clear(); // Detaches all objects from Doctrine!
             }
             ++$i;
         }
 
+        $this->em->flush();
+    }
+
+    /**
+     * @param Admission $admission
+     */
+    private function updateAdmissionStatus(Admission $admission)
+    {
+        $minBudgetMark = $this->em->getRepository('EBCoreBundle:AdmissionAttendee')
+            ->findMinBudgetMarkByAdmissionAndResult($admission, AdmissionAttendee::RESULT_ACCEPTED_BUDGET);
+        $minFeeMark = $this->em->getRepository('EBCoreBundle:AdmissionAttendee')
+            ->findMinBudgetMarkByAdmissionAndResult($admission, AdmissionAttendee::RESULT_ACCEPTED_FEE);
+
+        $admission->setBudgetFeeThreshold($minBudgetMark);
+        $admission->setFeeRejectedThreshold($minFeeMark);
+        $admission->setStatus(Admission::STATUS_CLOSED);
+
+        $this->em->persist($admission);
         $this->em->flush();
     }
 }

@@ -27,4 +27,22 @@ class AdmissionAttendeeRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * @param Admission $admission
+     * @param $resultType
+     * @return mixed
+     */
+    public function findMinBudgetMarkByAdmissionAndResult(Admission $admission, $resultType)
+    {
+        $qb = $this->createQueryBuilder('aa');
+        $qb->select('MIN(aa.finalGrade)')
+            ->where('aa.admission = :admission')
+            ->andWhere('aa.result = :resultType')
+            ->setParameter('admission', $admission)
+            ->setParameter('resultType', $resultType)
+        ;
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }
