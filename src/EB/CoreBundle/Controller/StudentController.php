@@ -4,6 +4,8 @@ namespace EB\CoreBundle\Controller;
 
 use EB\CoreBundle\Entity\Admission;
 use EB\CoreBundle\Entity\AdmissionAttendee;
+use EB\CoreBundle\Event\NotificationEvent;
+use EB\CoreBundle\Event\NotificationEvents;
 use EB\CoreBundle\Form\Type\AdmissionAttendeeType;
 use EB\UserBundle\Entity\StudentUser;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -70,6 +72,11 @@ class StudentController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($admissionAttendee);
             $em->flush();
+
+            $this->get('event_dispatcher')->dispatch(NotificationEvents::STUDENT_ATTEND_ADMISSION, new NotificationEvent([
+                'student' => $student,
+                'admission' => $admission,
+            ]));
 
             $this->addFlash('success', 'You have attended the admission successfully!');
 

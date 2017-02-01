@@ -32,7 +32,7 @@
                                 <td>{{ admission.feePayerNo }}</td>
                                 <td>{{ admission.budgetFeeThreshold }}</td>
                                 <td>{{ admission.feeRejectedThreshold }}</td>
-                                <td>{{ admission.closedAt }}</td>
+                                <td>{% if admission.closedAt %}{{ admission.closedAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
                                 <td>{{ admission.getStatusAsString }}</td>
                                 <td>
                                     {% if admission.id in admissionAttendeeArr %}

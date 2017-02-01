@@ -30,6 +30,23 @@ class LoadAdmissionData extends BaseFixture implements OrderedFixtureInterface
             $manager->persist($admission);
         }
 
+        for ($i = FixtureConfig::MAX_ADMISSIONS + 1; $i <= FixtureConfig::MAX_ADMISSIONS + 4; $i++) {
+            $admission = new Admission();
+            $admission->setBudgetFinancedNo(5);//$this->faker->numberBetween(10, 400));
+            $admission->setFeePayerNo(5);//$this->faker->numberBetween(5, 150));
+            $admission->setSessionDate($this->faker->dateTimeBetween('-2 years', 'now'));
+
+            $sessionDate = clone $admission->getSessionDate();
+            $admission->setClosedAt($sessionDate->add(new \DateInterval('P1M')));
+            $admission->setStatus(Admission::STATUS_OPEN); // all the admissions will be ready for process by default
+
+            $randomSchoolNo = mt_rand(1, count(FixtureConfig::$schoolArr)); // number between 0 and max (0, max]
+            $admission->setSchool($this->getReference('school-' . $randomSchoolNo));
+
+            $this->addReference('admission-' . $i, $admission);
+            $manager->persist($admission);
+        }
+
         $manager->flush();
     }
 

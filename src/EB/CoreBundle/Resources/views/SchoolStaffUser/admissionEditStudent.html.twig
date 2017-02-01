@@ -109,7 +109,7 @@
                     </tr>
                     <tr>
                         <th>Closed At</th>
-                        <td>{{ admission.closedAt }}</td>
+                        <td>{% if admission.closedAt %}{{ admission.closedAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
                     </tr>
                     <tr>
                         <th>Status</th>

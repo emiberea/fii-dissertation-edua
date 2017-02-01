@@ -4,6 +4,8 @@ namespace EB\CoreBundle\Controller;
 
 use EB\CoreBundle\Entity\Admission;
 use EB\CoreBundle\Entity\AdmissionAttendee;
+use EB\CoreBundle\Event\NotificationEvent;
+use EB\CoreBundle\Event\NotificationEvents;
 use EB\CoreBundle\Form\Type\AdmissionAttendeeType;
 use EB\CoreBundle\Form\Type\AdmissionType;
 use EB\UserBundle\Entity\SchoolStaffUser;
@@ -262,6 +264,15 @@ class SchoolStaffUserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($admissionAttendee);
             $em->flush();
+
+            // @TODO: check to not produce multiple notifications
+            if ($form->get('result')->getData() === AdmissionAttendee::RESULT_VERIFIED) {
+                $this->get('event_dispatcher')->dispatch(NotificationEvents::SSU_CONFIRM_STUDENT, new NotificationEvent([
+                    'student' => $admissionAttendee->getStudentUser(),
+                    'schoolStaffUser' => $schoolStaffUser,
+                    'admission' => $admission,
+                ]));
+            }
 
             $this->addFlash('success', 'Attending student edited successfully!');
 
