@@ -15,7 +15,7 @@
                             <th>Session Date</th>
                             <th>Budget Financed No</th>
                             <th>Fee Payer No</th>
-                            <th>Closest At</th>
+                            <th>Closed At</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -28,7 +28,7 @@
                                 <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('d-m-Y') }}{% else %}-{% endif %}</td>
                                 <td>{{ admission.budgetFinancedNo }}</td>
                                 <td>{{ admission.feePayerNo }}</td>
-                                <td>{{ admission.closedAt }}</td>
+                                <td>{% if admission.closedAt %}{{ admission.closedAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
                                 <td>{{ admission.getStatusAsString }}</td>
                                 <td>
                                     <a href="{{ path('eb_admin_admission_show', { 'id': admission.id }) }}" class="btn btn-info btn-xs">Show</a>

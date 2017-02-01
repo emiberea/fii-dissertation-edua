@@ -3,6 +3,7 @@
 namespace EB\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use EB\CoreBundle\Entity\Admission;
 
 /**
  * AdmissionRepository
@@ -12,4 +13,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class AdmissionRepository extends EntityRepository
 {
+    /**
+     * @param $dayOffset
+     * @return array
+     */
+    public function findByClosedAtAndDayOffset($dayOffset)
+    {
+        $now = new \DateTime();
+        $now->sub(new \DateInterval("P{$dayOffset}D"));
+
+        $qb = $this->createQueryBuilder('a');
+        $qb->where('a.closedAt < :now')
+            ->andWhere('a.status = :status')
+            ->setParameter('now', $now)
+            ->setParameter('status', Admission::STATUS_OPEN)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

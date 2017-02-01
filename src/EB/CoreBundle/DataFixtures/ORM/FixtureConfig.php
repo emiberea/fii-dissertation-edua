@@ -8,9 +8,9 @@ final class FixtureConfig
 {
     const MAX_ADMIN_USERS = 2;
     const MAX_SCHOOL_STAFF_USERS = 20;
-    const MAX_STUDENTS_USERS = 20;
+    const MAX_STUDENTS_USERS = 80;
     const MAX_ADMISSIONS = 20;
-    const MAX_ADMISSION_ATTENDEES = 40;
+    const MAX_ADMISSION_ATTENDEES = 150;
     const PASSWORD = '12345';
 
     /** @var array $highSchoolArr */

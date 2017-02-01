@@ -217,9 +217,10 @@ class SchoolStaffUserController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $admissionAttendees = $em->getRepository('EBCoreBundle:AdmissionAttendee')->findBy([
-            'admission' => $admission,
-        ]);
+        $admissionAttendees = $em->getRepository('EBCoreBundle:AdmissionAttendee')->findBy(
+            ['admission' => $admission],
+            ['finalGrade' => 'DESC']
+        );
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

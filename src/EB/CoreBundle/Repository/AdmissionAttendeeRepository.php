@@ -3,6 +3,7 @@
 namespace EB\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use EB\CoreBundle\Entity\Admission;
 
 /**
  * AdmissionAttendeeRepository
@@ -12,4 +13,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class AdmissionAttendeeRepository extends EntityRepository
 {
+    /**
+     * @param Admission $admission
+     * @return array
+     */
+    public function findByAdmission(Admission $admission)
+    {
+        $qb = $this->createQueryBuilder('aa');
+        $qb->where('aa.admission = :admission')
+            ->orderBy('aa.finalGrade', 'DESC')
+            ->setParameter('admission', $admission)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

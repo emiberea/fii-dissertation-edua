@@ -47,6 +47,7 @@ class CloseAdmissionCommand extends ContainerAwareCommand
 
         foreach ($admissions as $admission) {
             $this->processAdmission($admission);
+            $this->computeAdmissionStats($admission);
         }
     }
 
@@ -81,9 +82,40 @@ class CloseAdmissionCommand extends ContainerAwareCommand
 
         $this->em->flush();
 
-
         $admission->setStatus(Admission::STATUS_CLOSED);
         $this->em->persist($admission);
+        $this->em->flush();
+    }
+
+    /**
+     * @param Admission $admission
+     */
+    private function computeAdmissionStats(Admission $admission)
+    {
+        // get all attendees for this admission ordered by the final grade DESC
+        /** @var AdmissionAttendee[] $admissionAttendees */
+        $admissionAttendees = $this->em->getRepository('EBCoreBundle:AdmissionAttendee')->findByAdmission($admission);
+
+        // set the status for each attendee based on the number of available slots and their position based on the final grade
+        $batchSize = 5;
+        $i = 1;
+        foreach ($admissionAttendees as $admissionAttendee) {
+            if ($i <= $admission->getBudgetFinancedNo()) {
+                $admissionAttendee->setResult(AdmissionAttendee::RESULT_ACCEPTED_BUDGET);
+            } elseif ($i > $admission->getBudgetFinancedNo() && $i <= ($admission->getBudgetFinancedNo() + $admission->getFeePayerNo())) {
+                $admissionAttendee->setResult(AdmissionAttendee::RESULT_ACCEPTED_FEE);
+            } else {
+                $admissionAttendee->setResult(AdmissionAttendee::RESULT_REJECTED);
+            }
+
+            if (($i % $batchSize) === 0) {
+                $this->em->persist($admissionAttendee); // Executes all updates.
+                $this->em->flush(); // Executes all updates.
+//                $this->em->clear(); // Detaches all objects from Doctrine!
+            }
+            ++$i;
+        }
+
         $this->em->flush();
     }
 }
