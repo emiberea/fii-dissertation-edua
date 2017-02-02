@@ -74,8 +74,7 @@ class StudentController extends Controller
             $em->flush();
 
             $this->get('event_dispatcher')->dispatch(NotificationEvents::STUDENT_ATTEND_ADMISSION, new NotificationEvent([
-                'student' => $student,
-                'admission' => $admission,
+                'admissionAttendee' => $admissionAttendee,
             ]));
 
             $this->addFlash('success', 'You have attended the admission successfully!');

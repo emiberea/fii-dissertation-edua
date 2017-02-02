@@ -16,6 +16,7 @@ class Notification
     const TYPE_STUDENT_REGISTERED = 1;
     const TYPE_STUDENT_ATTEND_ADMISSION = 2;
     const TYPE_SSU_CONFIRM_STUDENT = 3; // SchoolStaffUser instance confirms a Student which attend an admission
+    const TYPE_PRE_CLOSE_ADMISSION = 4;
 
     /**
      * @var int
@@ -46,6 +47,20 @@ class Notification
      * @ORM\Column(name="type", type="smallint")
      */
     private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_1", type="string", length=255, nullable=true)
+     */
+    private $url1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_2", type="string", length=255, nullable=true)
+     */
+    private $url2;
 
     /**
      * @var AbstractUser
@@ -127,6 +142,44 @@ class Notification
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl1()
+    {
+        return $this->url1;
+    }
+
+    /**
+     * @param string $url1
+     * @return $this
+     */
+    public function setUrl1($url1)
+    {
+        $this->url1 = $url1;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl2()
+    {
+        return $this->url2;
+    }
+
+    /**
+     * @param string $url2
+     * @return $this
+     */
+    public function setUrl2($url2)
+    {
+        $this->url2 = $url2;
 
         return $this;
     }

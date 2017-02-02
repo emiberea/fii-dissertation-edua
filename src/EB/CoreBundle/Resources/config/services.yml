@@ -5,6 +5,6 @@ services:
 
     eb_core.listener.notification:
         class: EB\CoreBundle\EventListener\NotificationListener
-        arguments: ["@doctrine.orm.entity_manager", "@router", "@eb_core.service.mailer"]
+        arguments: ["@doctrine.orm.entity_manager", "@router", "@eb_core.service.mailer", "%main_domain%"]
         tags:
             - { name: kernel.event_subscriber }

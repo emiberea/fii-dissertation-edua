@@ -1,0 +1,13 @@
+{% block subject %}
+    There is 1 day remaining until the admission for {{ admission.school.name }} will end
+{% endblock %}
+
+{% block html %}
+    Hello {{ schoolStaffUser.getFullname }}!
+    <br />
+    <br />
+    There is 1 day remaining until the admission for {{ admission.school.name }} will end.
+    You can edit the admission here: <a href="{{ url1 }}">{{ url1 }}</a>
+    <br />
+    Have a nice day.
+{% endblock %}

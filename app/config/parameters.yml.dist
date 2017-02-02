@@ -17,3 +17,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Used when generating route on the CLI (Symfony commands) environment
+    main_domain: http://fii-dissertation-edua.l/app_dev.php

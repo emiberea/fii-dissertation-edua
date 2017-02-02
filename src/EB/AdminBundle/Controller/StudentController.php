@@ -46,7 +46,7 @@ class StudentController extends Controller
      */
     public function newAction(Request $request)
     {
-        $studentUser = new Studentuser();
+        $studentUser = new StudentUser();
         $form = $this->createForm(StudentType::class, $studentUser);
         $form->handleRequest($request);
 

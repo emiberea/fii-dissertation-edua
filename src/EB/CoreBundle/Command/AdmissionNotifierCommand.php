@@ -4,9 +4,12 @@ namespace EB\CoreBundle\Command;
 
 use Doctrine\ORM\EntityManager;
 use EB\CoreBundle\Entity\Admission;
+use EB\CoreBundle\Event\NotificationEvent;
+use EB\CoreBundle\Event\NotificationEvents;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class AdmissionNotifierCommand extends ContainerAwareCommand
 {
@@ -18,6 +21,9 @@ class AdmissionNotifierCommand extends ContainerAwareCommand
 
     /** @var EntityManager $em */
     private $em;
+
+    /** @var EventDispatcherInterface $ed */
+    private $ed;
 
     protected function configure()
     {
@@ -36,6 +42,7 @@ class AdmissionNotifierCommand extends ContainerAwareCommand
         $this->input  = $input;
         $this->output = $output;
         $this->em = $this->getContainer()->get('doctrine')->getManager();
+        $this->ed = $this->getContainer()->get('event_dispatcher');
 
         // take the admissions have the status open and have just 1 day before the closedAt date is reached
         /** @var Admission $admission */
@@ -53,7 +60,10 @@ class AdmissionNotifierCommand extends ContainerAwareCommand
     {
         $schoolStaffUsers = $admission->getSchool()->getSchoolStaffUsers();
         foreach ($schoolStaffUsers as $schoolStaffUser) {
-            // notify ssu
+            $this->ed->dispatch(NotificationEvents::SSU_PRE_CLOSE_ADMISSION, new NotificationEvent([
+                'schoolStaffUser' => $schoolStaffUser,
+                'admission' => $admission,
+            ]));
         }
 
     }
