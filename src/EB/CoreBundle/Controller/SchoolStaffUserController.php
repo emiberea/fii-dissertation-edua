@@ -266,7 +266,7 @@ class SchoolStaffUserController extends Controller
             $em->flush();
 
             // @TODO: check to not produce multiple notifications
-            if ($form->get('result')->getData() === AdmissionAttendee::RESULT_VERIFIED) {
+            if ($form->get('verified')->getData() === true) {
                 $this->get('event_dispatcher')->dispatch(NotificationEvents::SSU_CONFIRM_STUDENT, new NotificationEvent([
                     'student' => $admissionAttendee->getStudentUser(),
                     'schoolStaffUser' => $schoolStaffUser,

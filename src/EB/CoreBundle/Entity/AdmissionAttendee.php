@@ -14,15 +14,15 @@ use EB\UserBundle\Entity\StudentUser;
 class AdmissionAttendee
 {
     const RESULT_ATTENDED = 0;
-    const RESULT_VERIFIED = 1; // the Student data is checked, and he can be used in the Admission process
-    const RESULT_REJECTED = 2;
+    const RESULT_REJECTED_MANUALLY = 1; // rejected by the Ssu or by the command in case the components for computing the finalGrade are missing
+    const RESULT_REJECTED = 2; // rejected by the command which computes the admission results
     const RESULT_ACCEPTED_FEE = 3;
     const RESULT_ACCEPTED_BUDGET = 4;
 
     /** @var array $resultArr */
     public static $resultArr = [
         self::RESULT_ATTENDED => 'Attended',
-        self::RESULT_VERIFIED => 'Verified',
+        self::RESULT_REJECTED_MANUALLY => 'Rejected Manually',
         self::RESULT_REJECTED => 'Rejected',
         self::RESULT_ACCEPTED_FEE => 'Accepted Fee',
         self::RESULT_ACCEPTED_BUDGET => 'Accepted Budget',
@@ -71,6 +71,13 @@ class AdmissionAttendee
      * @ORM\Column(name="final_grade", type="decimal", precision=4, scale=2, nullable=true)
      */
     private $finalGrade;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="verified", type="boolean")
+     */
+    private $verified = false;
 
     /**
      * @var integer
@@ -203,6 +210,25 @@ class AdmissionAttendee
     public function setFinalGrade($finalGrade)
     {
         $this->finalGrade = $finalGrade;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isVerified()
+    {
+        return $this->verified;
+    }
+
+    /**
+     * @param boolean $verified
+     * @return $this
+     */
+    public function setVerified($verified)
+    {
+        $this->verified = $verified;
 
         return $this;
     }

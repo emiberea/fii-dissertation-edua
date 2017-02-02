@@ -23,7 +23,7 @@ class CloseAdmissionCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('eb_edua:close_admission_command')
+            ->setName('edua:close-admission')
             ->setDescription('Command which closes the Admission and computes the results for all students.');
     }
 
@@ -65,7 +65,15 @@ class CloseAdmissionCommand extends ContainerAwareCommand
         $i = 0;
         $admissionAttendees = $admission->getAdmissionAttendees();
         foreach ($admissionAttendees as $admissionAttendee) {
-            if ($admissionAttendee->getResult() !== AdmissionAttendee::RESULT_VERIFIED) {
+//            var_dump($admissionAttendee);die;
+            if (!$admissionAttendee->isVerified()
+                || $admissionAttendee->getBaccalaureateAverageGrade() === null
+                || $admissionAttendee->getBaccalaureateMaximumGrade() === null
+                || $admissionAttendee->getAdmissionExamGrade() === null
+            ) { // TODO: or in case any of the final grade components is missing
+                $admissionAttendee->setResult(AdmissionAttendee::RESULT_REJECTED_MANUALLY);
+                $this->em->persist($admissionAttendee);
+
                 continue;
             }
 

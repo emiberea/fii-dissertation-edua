@@ -6,7 +6,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href="{{ path('eb_core_ssu_admission_index') }}" class="btn btn-default pull-right">Back to Admission list</a>
-                    <h2>Student List</h2>
+                    <h2>Admission #{{ admission.id }} ({{ admission.sessionDate|date('d-m-Y') }}) - Student List</h2>
                 </div>
                 <table class="table table-striped">
                     <thead>

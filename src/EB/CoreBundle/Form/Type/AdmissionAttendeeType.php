@@ -24,11 +24,16 @@ class AdmissionAttendeeType extends AbstractType
                 ->add('baccalaureateMaximumGrade')
             ;
         } elseif ($options['form_type'] == self::FORM_TYPE_FULL) {
+            /** @var AdmissionAttendee $admissionAttendee */
+            $admissionAttendee = $builder->getData();
+
             $builder
                 ->add('baccalaureateAverageGrade')
                 ->add('baccalaureateMaximumGrade')
                 ->add('admissionExamGrade')
-                ->add('finalGrade')
+                ->add('verified', null, [
+                    'disabled' => $admissionAttendee->isVerified(),
+                ])
                 ->add('result', ChoiceType::class,[
                     'choices' => AdmissionAttendee::$resultArr,
                 ])
