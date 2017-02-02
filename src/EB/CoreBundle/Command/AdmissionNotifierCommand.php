@@ -54,10 +54,10 @@ class AdmissionNotifierCommand extends ContainerAwareCommand
 
     /**
      * @param Admission $admission
-     * @todo do a dispatch to an event and handle in NotificationListener
      */
     private function notifySsu(Admission $admission)
     {
+        // foreach given admission that is about to expire, notify all Ssu
         $schoolStaffUsers = $admission->getSchool()->getSchoolStaffUsers();
         foreach ($schoolStaffUsers as $schoolStaffUser) {
             $this->ed->dispatch(NotificationEvents::SSU_PRE_CLOSE_ADMISSION, new NotificationEvent([
@@ -65,6 +65,5 @@ class AdmissionNotifierCommand extends ContainerAwareCommand
                 'admission' => $admission,
             ]));
         }
-
     }
 }

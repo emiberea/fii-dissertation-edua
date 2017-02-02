@@ -53,6 +53,15 @@
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="{{ route == 'eb_core_notification' ? 'active' }}">
+                        <a href="{{ path('eb_core_notification') }}">
+                            <span class="glyphicon glyphicon-bell"></span>
+                            {% set unread_notification_no = count_unread_notification(app.user) %}
+                            {% if unread_notification_no != 0 %}
+                                <span class="label label-danger">{{ unread_notification_no }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
                     <li class="dropdown {{ 'fos_user' in route ? 'active' }}">
                         <a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-user"></span> {{ app.user.username }} <b class="caret"></b>
