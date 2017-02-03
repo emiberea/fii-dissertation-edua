@@ -14,10 +14,11 @@ use EB\CoreBundle\Entity\Admission;
 class AdmissionRepository extends EntityRepository
 {
     /**
+     * @param $status
      * @param $dayOffset
      * @return array
      */
-    public function findByClosedAtAndDayOffset($dayOffset)
+    public function findByStatusAndClosedAtDayOffset($status, $dayOffset)
     {
         $now = new \DateTime();
         $now->sub(new \DateInterval("P{$dayOffset}D"));
@@ -25,8 +26,8 @@ class AdmissionRepository extends EntityRepository
         $qb = $this->createQueryBuilder('a');
         $qb->where('a.closedAt < :now')
             ->andWhere('a.status = :status')
+            ->setParameter('status', $status)
             ->setParameter('now', $now)
-            ->setParameter('status', Admission::STATUS_OPEN)
         ;
 
         return $qb->getQuery()->getResult();

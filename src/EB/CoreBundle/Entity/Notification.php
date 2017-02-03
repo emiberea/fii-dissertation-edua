@@ -63,6 +63,13 @@ class Notification
     private $url2;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="extra_data", type="array")
+     */
+    private $extraData;
+
+    /**
      * @var AbstractUser
      *
      * @ORM\ManyToOne(targetEntity="EB\UserBundle\Entity\AbstractUser", inversedBy="sentNotifications")
@@ -79,6 +86,7 @@ class Notification
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->extraData = [];
     }
 
     /**
@@ -180,6 +188,25 @@ class Notification
     public function setUrl2($url2)
     {
         $this->url2 = $url2;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getExtraData()
+    {
+        return $this->extraData;
+    }
+
+    /**
+     * @param array $extraData
+     * @return $this
+     */
+    public function setExtraData($extraData)
+    {
+        $this->extraData = $extraData;
 
         return $this;
     }

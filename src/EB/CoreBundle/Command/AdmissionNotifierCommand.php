@@ -46,7 +46,7 @@ class AdmissionNotifierCommand extends ContainerAwareCommand
 
         // take the admissions have the status open and have just 1 day before the closedAt date is reached
         /** @var Admission $admission */
-        $admissions = $this->em->getRepository('EBCoreBundle:Admission')->findByClosedAtAndDayOffset(1);
+        $admissions = $this->em->getRepository('EBCoreBundle:Admission')->findByStatusAndClosedAtDayOffset(Admission::STATUS_OPEN, 1);
         foreach ($admissions as $admission) {
             $this->notifySsu($admission);
         }

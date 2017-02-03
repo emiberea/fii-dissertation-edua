@@ -6,7 +6,8 @@
     Hello {{ student.getFullname }}!
     <br />
     <br />
-    {{ schoolStaffUser.getFullname }} accepted you to attend admission for school {{ admission.school.name }}
+    {{ schoolStaffUser.getFullname }} accepted you to attend admission for school {{ admission.school.name }}.
+    You can see the admission here <a href="{{ url1 }}">{{ url1 }}</a>
     <br />
     Have a nice day.
 {% endblock %}
