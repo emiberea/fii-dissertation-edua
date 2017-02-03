@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class AdminUserRepository extends EntityRepository
 {
+    /**
+     * @return mixed
+     */
+    public function countAll()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->select('count(a.id)');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

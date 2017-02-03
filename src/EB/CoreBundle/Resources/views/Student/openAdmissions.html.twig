@@ -33,7 +33,9 @@
                                 <td>{{ admission.budgetFeeThreshold }}</td>
                                 <td>{{ admission.feeRejectedThreshold }}</td>
                                 <td>{% if admission.closedAt %}{{ admission.closedAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
-                                <td>{{ admission.getStatusAsString }}</td>
+                                <td>
+                                    {% include 'EBCoreBundle:partials:admissionStatuses.html.twig' %}
+                                </td>
                                 <td>
                                     {% if admission.id in admissionAttendeeArr %}
                                         <a href="{{ path('eb_core_student_view_attended_admission', {'id': admission.id }) }}" class="btn btn-info btn-xs">details</a>

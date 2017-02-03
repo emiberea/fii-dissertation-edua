@@ -14,6 +14,17 @@ use EB\CoreBundle\Entity\Admission;
 class AdmissionRepository extends EntityRepository
 {
     /**
+     * @return mixed
+     */
+    public function countAll()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->select('count(a.id)');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    /**
      * @param $status
      * @param $dayOffset
      * @return array

@@ -30,14 +30,17 @@
                     </tr>
                     <tr>
                         <th>Type</th>
-                        <td>{{ school.type }}</td>
+                        <td>{{ school.typeAsString }}</td>
                     </tr>
                 </tbody>
             </table>
+
             <a href="{{ path('eb_admin_school_edit', { 'id': school.id }) }}" class="btn btn-warning">Edit</a>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="btn btn-danger">
-            {{ form_end(delete_form) }}
+            <div class="pull-right">
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                {{ form_end(delete_form) }}
+            </div>
         </div>
     </div>
 {% endblock %}

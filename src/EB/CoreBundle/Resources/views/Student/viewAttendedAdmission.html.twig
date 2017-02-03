@@ -38,7 +38,9 @@
                     </tr>
                     <tr>
                         <th>Status</th>
-                        <td>{{ admission.statusAsString }}</td>
+                        <td>
+                            {% include 'EBCoreBundle:partials:admissionStatuses.html.twig' %}
+                        </td>
                     </tr>
                 </tbody>
             </table>

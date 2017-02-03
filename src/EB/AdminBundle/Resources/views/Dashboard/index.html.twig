@@ -2,8 +2,15 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h2>Admin dashboard</h2>
+        <div class="col-md-8 col-md-offset-2">
+            <h2>Admin dashboard - stats</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Total number of admins: <b>{{ totalAdmins }}</b></li>
+                <li class="list-group-item">Total number of students: <b>{{ totalStudents }}</b></li>
+                <li class="list-group-item">Total number of school staff users: <b>{{ totalSchoolStaffUsers }}</b></li>
+                <li class="list-group-item">Total number of schools: <b>{{ totalSchools }}</b></li>
+                <li class="list-group-item">Total number of admissions: <b>{{ totalAdmissions }}</b></li>
+            </ul>
         </div>
     </div>
 {% endblock %}

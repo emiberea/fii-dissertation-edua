@@ -13,12 +13,12 @@
                         <td>{{ admission.id }}</td>
                     </tr>
                     <tr>
-                        <th>Created At</th>
-                        <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                        <th>School</th>
+                        <td>{{ admission.school.name }}</td>
                     </tr>
                     <tr>
                         <th>Session Date</th>
-                        <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                        <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('F Y') }}{% else %}-{% endif %}</td>
                     </tr>
                     <tr>
                         <th>Budget Financed No</th>
@@ -30,11 +30,15 @@
                     </tr>
                     <tr>
                         <th>Budget / Fee Threshold</th>
-                        <td>{{ admission.budgetFeeThreshold }}</td>
+                        <td>{% if admission.budgetFeeThreshold %}{{ admission.budgetFeeThreshold }}{% else %}<span class="badge">To  be completed</span>{% endif %}</td>
                     </tr>
                     <tr>
                         <th>Fee / Rejected No</th>
-                        <td>{{ admission.feeRejectedThreshold }}</td>
+                        <td>{% if admission.feeRejectedThreshold %}{{ admission.feeRejectedThreshold }}{% else %}<span class="badge">To  be completed</span>{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Created At</th>
+                        <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
                     </tr>
                     <tr>
                         <th>Closed At</th>
@@ -42,14 +46,19 @@
                     </tr>
                     <tr>
                         <th>Status</th>
-                        <td>{{ admission.statusAsString }}</td>
+                        <td>
+                            {% include 'EBCoreBundle:partials:admissionStatuses.html.twig' %}
+                        </td>
                     </tr>
                 </tbody>
             </table>
+
             <a href="{{ path('eb_admin_admission_edit', { 'id': admission.id }) }}" class="btn btn-warning">Edit</a>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="btn btn-danger">
-            {{ form_end(delete_form) }}
+            <div class="pull-right">
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                {{ form_end(delete_form) }}
+            </div>
         </div>
     </div>
 {% endblock %}

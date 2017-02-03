@@ -17,6 +17,10 @@
                         <td>{{ studentUser.email }}</td>
                     </tr>
                     <tr>
+                        <th>Title</th>
+                        <td>{{ studentUser.getTitleAsString }}</td>
+                    </tr>
+                    <tr>
                         <th>First Name</th>
                         <td>{{ studentUser.firstName }}</td>
                     </tr>
@@ -86,10 +90,13 @@
                     </tr>
                 </tbody>
             </table>
+
             <a href="{{ path('eb_admin_student_edit', { 'id': studentUser.id }) }}" class="btn btn-warning">Edit</a>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="btn btn-danger">
-            {{ form_end(delete_form) }}
+            <div class="pull-right">
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                {{ form_end(delete_form) }}
+            </div>
         </div>
     </div>
 {% endblock %}

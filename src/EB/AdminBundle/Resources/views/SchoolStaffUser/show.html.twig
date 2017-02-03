@@ -26,14 +26,14 @@
                     </tr>
                     <tr>
                         <th>Title</th>
-                        <td>{{ schoolStaffUser.title }}</td>
+                        <td>{{ schoolStaffUser.titleAsString }}</td>
                     </tr>
                     <tr>
                         <th>Job Title</th>
                         <td>{{ schoolStaffUser.jobTitle }}</td>
                     </tr>
                     <tr>
-                        <th>City</th>
+                        <th>Academic Degree</th>
                         <td>{{ schoolStaffUser.academicDegree }}</td>
                     </tr>
                     <tr>
@@ -52,10 +52,13 @@
                     </tr>
                 </tbody>
             </table>
+
             <a href="{{ path('eb_admin_ssu_edit', { 'id': schoolStaffUser.id }) }}" class="btn btn-warning">Edit</a>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="btn btn-danger">
-            {{ form_end(delete_form) }}
+            <div class="pull-right">
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                {{ form_end(delete_form) }}
+            </div>
         </div>
     </div>
 {% endblock %}

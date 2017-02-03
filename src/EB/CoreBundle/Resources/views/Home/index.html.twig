@@ -1,11 +1,28 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <h1>Edu Admission - Main page</h1>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Edu Admission</h1>
+            <p>Edu Admission is a web application designed to help both students and educational institutions to communicate better together and make the admission process easier allowing to attend online and providing rich information about schools.</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
         </div>
-        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Register as a student</h2>
+            <p>Create a student account in one step. You will have all your educational and school information in one place. View school and what admissions are available at any moment. View rich data about school, attend an admission and get notified about the results.</p>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Manage your school</h2>
+            <p>Your school or educational institution will be enrolled automatically in the application by the ministry. Also, all the data will be verified by the educational ministry. You will be able to manage admission contests online and view information about the attending students.</p>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get notifications</h2>
+            <p>Visualize rich notification about the admission process. Get information via email and also in the application notification page. Navigate from the notification directly to the page where you need to take action and enter data.</p>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        </div>
     </div>
 {% endblock %}

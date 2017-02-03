@@ -1,0 +1,9 @@
+{% if admission.status == constant('STATUS_OPEN', admission) %}
+    <span class="label label-success">{{ admission.getStatusAsString }}</span>
+{% elseif admission.status == constant('STATUS_READY_TO_PROCESS', admission) %}
+    <span class="label label-warning">{{ admission.getStatusAsString }}</span>
+{% elseif admission.status == constant('STATUS_PROCESSING', admission) %}
+    <span class="label label-info">{{ admission.getStatusAsString }}</span>
+{% elseif admission.status == constant('STATUS_CLOSED', admission) %}
+    <span class="label label-danger">{{ admission.getStatusAsString }}</span>
+{% endif %}

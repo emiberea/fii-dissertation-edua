@@ -166,6 +166,14 @@ abstract class AbstractUser extends BaseUser
     }
 
     /**
+     * @return mixed
+     */
+    public function getTitleAsString()
+    {
+        return self::$titleArr[$this->title];
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getSentNotifications()

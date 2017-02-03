@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class SchoolRepository extends EntityRepository
 {
+    /**
+     * @return mixed
+     */
+    public function countAll()
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->select('count(s.id)');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

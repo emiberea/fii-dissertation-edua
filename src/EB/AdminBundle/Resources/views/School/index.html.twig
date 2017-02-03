@@ -27,7 +27,7 @@
                                 <td>{{ school.country }}</td>
                                 <td>{{ school.city }}</td>
                                 <td>{{ school.address }}</td>
-                                <td>{{ school.type }}</td>
+                                <td>{{ school.getTypeAsString }}</td>
                                 <td>
                                     <a href="{{ path('eb_admin_school_show', { 'id': school.id }) }}" class="btn btn-info btn-xs">Show</a>
                                     <a href="{{ path('eb_admin_school_edit', { 'id': school.id }) }}" class="btn btn-warning btn-xs">Edit</a>
