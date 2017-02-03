@@ -38,7 +38,17 @@
                     </tr>
                     <tr>
                         <th>Enabled</th>
-                        <td>{% if schoolStaffUser.enabled %}Yes{% else %}No{% endif %}</td>
+                        <td>
+                            {% if schoolStaffUser.enabled == false %}
+                                <span class="label label-danger not-read">
+                                    <span class="glyphicon glyphicon-remove"></span> NO
+                                </span>
+                            {% else %}
+                                <span class="label label-success">
+                                    <span class="glyphicon glyphicon-ok"></span> YES
+                                </span>
+                            {% endif %}
+                        </td>
                     </tr>
                 </tbody>
             </table>

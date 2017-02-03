@@ -38,8 +38,27 @@
                                 <td>{{ studentUser.specialization }}</td>
                                 <td>{{ studentUser.baccalaureateAverageGrade }}</td>
                                 <td>{{ studentUser.baccalaureateMaximumGrade }}</td>
-                                <td>{% if studentUser.enabled %}Yes{% else %}No{% endif %}</td>
-                                <td>{% if studentUser.verified %}Yes{% else %}No{% endif %}</td>
+                                <td>
+                                    {% if studentUser.enabled == false %}
+                                        <span class="label label-danger not-read">
+                                            <span class="glyphicon glyphicon-remove"></span> NO
+                                        </span>
+                                    {% else %}
+                                        <span class="label label-success">
+                                            <span class="glyphicon glyphicon-ok"></span> YES
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if studentUser.verified == false %}
+                                        <span class="label label-danger not-read">
+                                            <span class="glyphicon glyphicon-remove"></span> NO
+                                        </span>
+                                    {% else %}
+                                        <span class="label label-success">
+                                            <span class="glyphicon glyphicon-ok"></span> YES
+                                        </span>
+                                    {% endif %}
                                 <td>
                                     <a href="{{ path('eb_admin_student_show', { 'id': studentUser.id }) }}" class="btn btn-info btn-xs">Show</a>
                                     <a href="{{ path('eb_admin_student_edit', { 'id': studentUser.id }) }}" class="btn btn-warning btn-xs">Edit</a>
