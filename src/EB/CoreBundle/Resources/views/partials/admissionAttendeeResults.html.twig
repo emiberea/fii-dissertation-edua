@@ -1,0 +1,11 @@
+{% if admissionAttendee.result == constant('RESULT_ATTENDED', admissionAttendee) %}
+    <span class="label label-info">{{ admissionAttendee.getResultAsString }}</span>
+{% elseif admissionAttendee.result == constant('RESULT_REJECTED_MANUALLY', admissionAttendee) %}
+    <span class="label label-danger">{{ admissionAttendee.getResultAsString }}</span>
+{% elseif admissionAttendee.result == constant('RESULT_REJECTED', admissionAttendee) %}
+    <span class="label label-danger">{{ admissionAttendee.getResultAsString }}</span>
+{% elseif admissionAttendee.result == constant('RESULT_ACCEPTED_FEE', admissionAttendee) %}
+    <span class="label label-warning">{{ admissionAttendee.getResultAsString }}</span>
+{% elseif admissionAttendee.result == constant('RESULT_ACCEPTED_BUDGET', admissionAttendee) %}
+    <span class="label label-success">{{ admissionAttendee.getResultAsString }}</span>
+{% endif %}

@@ -165,7 +165,7 @@ class AdmissionController extends Controller
             10
         );
 
-        return $this->render('EBCoreBundle:Admission:viewStudents.html.twig', array(
+        return $this->render('EBAdminBundle:Admission:viewStudents.html.twig', array(
             'admission' => $admission,
             'pagination' => $pagination,
         ));

@@ -3,7 +3,7 @@
 {% block content %}
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <a href="{{ path('eb_core_student_open_admissions') }}" class="btn btn-default pull-right">Back to the list</a>
+            <a href="{{ path('eb_core_admission_index') }}" class="btn btn-default pull-right">Back to the list</a>
             <h2>Admission #{{ admission.id }}</h2>
             <table class="table">
                 <thead></thead>
@@ -64,19 +64,6 @@
                     </tr>
                 </tbody>
             </table>
-
-            {% if student.verified %}
-                <h3>Attend this admission with the following marks:</h3>
-                <div class="alert alert-info"><b>Tip:</b> Update the marks so they advantage you for this school.</div>
-                {{ form_start(form) }}
-                {{ form_errors(form) }}
-                    {{ form_row(form.baccalaureateAverageGrade, {'value': student.baccalaureateAverageGrade}) }}
-                    {{ form_row(form.baccalaureateMaximumGrade, {'value': student.baccalaureateMaximumGrade}) }}
-                    <input type="submit" value="Attend" class="btn btn-success">
-                {{ form_end(form) }}
-            {% else %}
-                <div class="alert alert-danger"><b>Warning:</b> To attend an admission the student account has to be validated by an admin.</div>
-            {% endif %}
         </div>
     </div>
 {% endblock %}

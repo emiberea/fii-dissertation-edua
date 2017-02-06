@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{ path('eb_admin_admission_index') }}" class="btn btn-default pull-right">Back to Admission list</a>
+                    <a href="{{ path('eb_core_admission_index') }}" class="btn btn-default pull-right">Back to Admission list</a>
                     <h2>Student List</h2>
                 </div>
                 <table class="table table-striped">
@@ -41,9 +41,9 @@
                                 <td>{{ admissionAttendee.baccalaureateMaximumGrade }}</td>
                                 <td>{{ admissionAttendee.admissionExamGrade }}</td>
                                 <td>{{ admissionAttendee.finalGrade }}</td>
-                                <td>{{ admissionAttendee.getResultAsString }}</td>
+                                <td>{% include 'EBCoreBundle:partials:admissionAttendeeResults.html.twig' %}</td>
                                 <td>
-                                    <a href="{{ path('eb_admin_student_edit', {'id': admissionAttendee.studentUser.id}) }}" class="btn btn-warning btn-xs">Edit</a>
+                                    <a href="#" class="btn btn-info btn-xs">Show</a>
                                 </td>
                             </tr>
                         {% else %}
