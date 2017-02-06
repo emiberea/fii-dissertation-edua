@@ -20,6 +20,9 @@ class LoadAdminUserData extends BaseFixture implements OrderedFixtureInterface
             $adminUser->setPlainPassword(FixtureConfig::PASSWORD);
             $adminUser->setEnabled(true);
             $adminUser->addRole('ROLE_ADMIN');
+            if ($i === 1) {
+                $adminUser->addRole('ROLE_SUPER_ADMIN');
+            }
             $adminUser->setFirstName($this->faker->firstName);
             $adminUser->setLastName($this->faker->lastName);
             $adminUser->setTitle(array_rand(AbstractUser::$titleArr));
