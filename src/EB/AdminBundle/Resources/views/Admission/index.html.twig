@@ -38,6 +38,10 @@
                                     <a href="{{ path('eb_admin_admission_view_students', { 'id': admission.id }) }}" class="btn btn-info btn-xs">Students</a>
                                 </td>
                             </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8">There are no rows to display.</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>

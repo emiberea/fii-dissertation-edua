@@ -53,6 +53,10 @@
                                     <a href="{{ path('eb_admin_ssu_edit', { 'id': schoolStaffUser.id }) }}" class="btn btn-warning btn-xs">Edit</a>
                                 </td>
                             </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="10">There are no rows to display.</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>

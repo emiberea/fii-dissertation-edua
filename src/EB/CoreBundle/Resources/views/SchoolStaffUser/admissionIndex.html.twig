@@ -42,6 +42,10 @@
                                     <a href="{{ path('eb_core_ssu_admission_view_students', { 'id': admission.id }) }}" class="btn btn-info btn-xs">Students</a>
                                 </td>
                             </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="10">There are no rows to display.</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>

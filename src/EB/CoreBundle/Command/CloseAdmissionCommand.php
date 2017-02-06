@@ -29,7 +29,6 @@ class CloseAdmissionCommand extends ContainerAwareCommand
 
     /**
      * {@inheritdoc}
-     * @todo finish close admission workflow
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -65,12 +64,11 @@ class CloseAdmissionCommand extends ContainerAwareCommand
         $i = 0;
         $admissionAttendees = $admission->getAdmissionAttendees();
         foreach ($admissionAttendees as $admissionAttendee) {
-//            var_dump($admissionAttendee);die;
             if (!$admissionAttendee->isVerified()
                 || $admissionAttendee->getBaccalaureateAverageGrade() === null
                 || $admissionAttendee->getBaccalaureateMaximumGrade() === null
                 || $admissionAttendee->getAdmissionExamGrade() === null
-            ) { // TODO: or in case any of the final grade components is missing
+            ) { // RESULT_REJECTED_MANUALLY case the student is NOT verified or in case any of the final grade components is missing
                 $admissionAttendee->setResult(AdmissionAttendee::RESULT_REJECTED_MANUALLY);
                 $this->em->persist($admissionAttendee);
 

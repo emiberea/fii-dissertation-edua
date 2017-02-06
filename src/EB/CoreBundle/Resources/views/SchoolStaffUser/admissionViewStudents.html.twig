@@ -46,6 +46,10 @@
                                     <a href="{{ path('eb_core_ssu_admission_edit_student', {'admissionId': admission.id, 'admissionAttendeeId': admissionAttendee.id}) }}" class="btn btn-warning btn-xs">Edit</a>
                                 </td>
                             </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="13">There are no rows to display.</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>

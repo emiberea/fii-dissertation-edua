@@ -33,6 +33,10 @@
                                     <a href="{{ path('eb_admin_school_edit', { 'id': school.id }) }}" class="btn btn-warning btn-xs">Edit</a>
                                 </td>
                             </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="7">There are no rows to display.</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
