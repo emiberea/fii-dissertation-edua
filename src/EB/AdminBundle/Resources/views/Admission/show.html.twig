@@ -30,11 +30,23 @@
                     </tr>
                     <tr>
                         <th>Budget / Fee Threshold</th>
-                        <td>{% if admission.budgetFeeThreshold %}{{ admission.budgetFeeThreshold }}{% else %}<span class="badge">To  be completed</span>{% endif %}</td>
+                        <td>
+                            {% if admission.budgetFeeThreshold %}
+                                {{ admission.budgetFeeThreshold }}
+                            {% else %}
+                                <span class="badge">To  be completed</span>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th>Fee / Rejected No</th>
-                        <td>{% if admission.feeRejectedThreshold %}{{ admission.feeRejectedThreshold }}{% else %}<span class="badge">To  be completed</span>{% endif %}</td>
+                        <td>
+                            {% if admission.feeRejectedThreshold %}
+                                {{ admission.feeRejectedThreshold }}
+                            {% else %}
+                                <span class="badge">To  be completed</span>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th>Created At</th>

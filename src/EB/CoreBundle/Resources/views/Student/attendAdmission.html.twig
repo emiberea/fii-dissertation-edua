@@ -13,12 +13,12 @@
                         <td>{{ admission.id }}</td>
                     </tr>
                     <tr>
-                        <th>Created At</th>
-                        <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                        <th>School</th>
+                        <td>{{ admission.school.name }}</td>
                     </tr>
                     <tr>
                         <th>Session Date</th>
-                        <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('d-m-Y') }}{% else %}-{% endif %}</td>
+                        <td>{% if admission.sessionDate %}{{ admission.sessionDate|date('F Y') }}{% else %}-{% endif %}</td>
                     </tr>
                     <tr>
                         <th>Budget Financed No</th>
@@ -30,11 +30,27 @@
                     </tr>
                     <tr>
                         <th>Budget / Fee Threshold</th>
-                        <td>{{ admission.budgetFeeThreshold }}</td>
+                        <td>
+                            {% if admission.budgetFeeThreshold %}
+                                {{ admission.budgetFeeThreshold }}
+                            {% else %}
+                                <span class="badge">To  be completed</span>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th>Fee / Rejected No</th>
-                        <td>{{ admission.feeRejectedThreshold }}</td>
+                        <td>
+                            {% if admission.feeRejectedThreshold %}
+                                {{ admission.feeRejectedThreshold }}
+                            {% else %}
+                                <span class="badge">To  be completed</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Created At</th>
+                        <td>{% if admission.createdAt %}{{ admission.createdAt|date('d-m-Y') }}{% else %}-{% endif %}</td>
                     </tr>
                     <tr>
                         <th>Closed At</th>
@@ -49,13 +65,18 @@
                 </tbody>
             </table>
 
-            <h3>Attend this admission with the following marks:</h3>
-            <div class="alert alert-info"><b>Tip:</b> Update the marks so they advantage you for this school.</div>
-            {{ form_start(form) }}
-                {{ form_row(form.baccalaureateAverageGrade, {'value': student.baccalaureateAverageGrade}) }}
-                {{ form_row(form.baccalaureateMaximumGrade, {'value': student.baccalaureateMaximumGrade}) }}
-                <input type="submit" value="Attend" class="btn btn-success">
-            {{ form_end(form) }}
+            {% if student.verified %}
+                <h3>Attend this admission with the following marks:</h3>
+                <div class="alert alert-info"><b>Tip:</b> Update the marks so they advantage you for this school.</div>
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                    {{ form_row(form.baccalaureateAverageGrade, {'value': student.baccalaureateAverageGrade}) }}
+                    {{ form_row(form.baccalaureateMaximumGrade, {'value': student.baccalaureateMaximumGrade}) }}
+                    <input type="submit" value="Attend" class="btn btn-success">
+                {{ form_end(form) }}
+            {% else %}
+                <div class="alert alert-danger"><b>Warning:</b> To attend an admission the student account has to be validated by an admin.</div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

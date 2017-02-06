@@ -68,7 +68,8 @@ class CloseAdmissionCommand extends ContainerAwareCommand
                 || $admissionAttendee->getBaccalaureateAverageGrade() === null
                 || $admissionAttendee->getBaccalaureateMaximumGrade() === null
                 || $admissionAttendee->getAdmissionExamGrade() === null
-            ) { // RESULT_REJECTED_MANUALLY case the student is NOT verified or in case any of the final grade components is missing
+            ) {
+                // RESULT_REJECTED_MANUALLY case the student is NOT verified or in case any of the final grade components is missing
                 $admissionAttendee->setResult(AdmissionAttendee::RESULT_REJECTED_MANUALLY);
                 $this->em->persist($admissionAttendee);
 

@@ -65,7 +65,7 @@ class StudentController extends Controller
         ]);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $student->isVerified()) {
             $admissionAttendee->setAdmission($admission);
             $admissionAttendee->setStudentUser($student);
 
