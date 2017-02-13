@@ -13,7 +13,7 @@ Feature: School Staff User admission creation
     And I fill in "password" with "12345"
     And I press "Log in"
     Then I should be on "/"
-    And I should see "Edu Admission - Main page"
+    And I should see "Edu Admission"
 
   Scenario: As a Ssu, I want to create a new admission then I logout and login as a student and attend the created admission
     When I follow "Admissions"
@@ -21,7 +21,7 @@ Feature: School Staff User admission creation
     And I should see "Admission List"
     And I should see "Add Admission"
     When I follow "Add Admission"
-    Then I should be on "school-staff/admission/new"
+    Then I should be on "/school-staff/admission/new"
     And I should see "Admission Creation"
     When I select "4" from "eb_core_admission_sessionDate_day"
     And I select "Jul" from "eb_core_admission_sessionDate_month"
@@ -32,9 +32,9 @@ Feature: School Staff User admission creation
     Then I should see "New admission created!"
     And I should see "04-07-2017"
     When I follow "Back to the list"
-    Then I should be on "school-staff/admission"
+    Then I should be on "/school-staff/admission"
     And I should see "Admission List"
-    And I should see "04-07-2017"
+    And I should see "Jul 2017"
     When I go to "/logout"
     Then I should be on "/"
     # As a student

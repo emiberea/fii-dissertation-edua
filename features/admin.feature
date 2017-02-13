@@ -48,7 +48,7 @@ Feature: Admin
     When I fill in "Email" with "emi.berea+ssu-101@gmail.com"
     And I fill in "First name" with "SsuFn101"
     And I fill in "Last name" with "SsuLn101"
-    And I fill in "Title" with "Mrs."
+    And I select "Mr." from "Title"
     And I fill in "Job title" with "Secretary"
     And I fill in "Academic degree" with "Bachelor"
     And I select "Facultatea de Informatica, Iasi" from "School"
