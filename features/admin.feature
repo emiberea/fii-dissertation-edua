@@ -59,7 +59,6 @@ Feature: Admin
     When I follow "Back to the list"
     Then I should be on "/admin/school-staff/"
     And I should see "School Staff User List"
-    And I should see "emi.berea+ssu-101@gmail.com"
 
   Scenario: As an admin, I want to create a new student
     When I follow "Students"
@@ -89,7 +88,6 @@ Feature: Admin
     When I follow "Back to the list"
     Then I should be on "/admin/student/"
     And I should see "Student List"
-    And I should see "emi.berea+student-101@gmail.com"
 
   Scenario: As an admin, I want to assign a school staff user to a school
     When I follow "School Staff Users"

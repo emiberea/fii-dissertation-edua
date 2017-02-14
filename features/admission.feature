@@ -34,7 +34,6 @@ Feature: School Staff User admission creation
     When I follow "Back to the list"
     Then I should be on "/school-staff/admission"
     And I should see "Admission List"
-    And I should see "Jul 2017"
     When I go to "/logout"
     Then I should be on "/"
     # As a student
@@ -47,7 +46,7 @@ Feature: School Staff User admission creation
     And I fill in "password" with "12345"
     And I press "Log in"
     Then I should be on "/"
-    And I should see "Edu Admission - Main page"
+    And I should see "Edu Admission"
     When I follow "Open Admissions"
     Then I should be on "/student/open-admissions"
     And I should see "Open Admission List"

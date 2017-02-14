@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: bundles/bazinga_faker.yml }
     - { resource: bundles/fos_user.yml }
     - { resource: bundles/knp_paginator.yml }
     - { resource: bundles/pugx_multi_user.yml }

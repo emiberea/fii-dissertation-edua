@@ -47,39 +47,39 @@ class FeatureContext extends MinkContext implements KernelAwareContext, SnippetA
         return $this->kernel->getContainer();
     }
 
-    /**
-     * @TODO: Need to fix the tests, not properly done.
-     * @BeforeScenario
-     */
-    public function restoreDatabase()
-    {
-        /** @var \Doctrine\Bundle\DoctrineBundle\Registry $doctrine */
-        $doctrine = $this->getContainer()->get('doctrine');
-
-        /** @var Connection $connection */
-        $connection = $doctrine->getConnection();
-        $connection->executeQuery('SET FOREIGN_KEY_CHECKS = 0;');
-
-        $tables = $connection->getSchemaManager()->listTableNames();
-        foreach ($tables as $table) {
-            $connection->executeQuery(sprintf('TRUNCATE TABLE %s', $table));
-        }
-
-        $connection->executeQuery('SET FOREIGN_KEY_CHECKS = 1;');
-
-        // then we load the fixtures
-        $application = new Application($this->kernel);
-        $application->setAutoExit(false);
-
-        $fixtures = array(
-            'command'          => 'doctrine:fixtures:load',
-            '--no-interaction' => true,
-            '--quiet'          => true,
-            '--env'            => 'test',
-        );
-
-        $application->run(new ArrayInput($fixtures));
-    }
+//    /**
+//     * @TODO: Recheck this method
+//     * @BeforeScenario
+//     */
+//    public function restoreDatabase()
+//    {
+//        /** @var \Doctrine\Bundle\DoctrineBundle\Registry $doctrine */
+//        $doctrine = $this->getContainer()->get('doctrine');
+//
+//        /** @var Connection $connection */
+//        $connection = $doctrine->getConnection();
+//        $connection->executeQuery('SET FOREIGN_KEY_CHECKS = 0;');
+//
+//        $tables = $connection->getSchemaManager()->listTableNames();
+//        foreach ($tables as $table) {
+//            $connection->executeQuery(sprintf('TRUNCATE TABLE %s', $table));
+//        }
+//
+//        $connection->executeQuery('SET FOREIGN_KEY_CHECKS = 1;');
+//
+//        // then we load the fixtures
+//        $application = new Application($this->kernel);
+//        $application->setAutoExit(false);
+//
+//        $fixtures = array(
+//            'command'          => 'doctrine:fixtures:load',
+//            '--no-interaction' => true,
+//            '--quiet'          => true,
+//            '--env'            => 'test',
+//        );
+//
+//        $application->run(new ArrayInput($fixtures));
+//    }
 
     /**
      * @When /^I check last email "([^"]*)"$/
