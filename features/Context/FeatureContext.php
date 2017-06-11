@@ -151,4 +151,12 @@ class FeatureContext extends MinkContext implements KernelAwareContext, SnippetA
         $link = $this->getLinkFromEmailBody($email->getBody(), 'registration');
         $this->visit($link);
     }
+
+    /**
+     * @BeforeStep
+     */
+    public static function prepare(\Behat\Behat\Hook\Scope\BeforeStepScope $event)
+    {
+        usleep(800000);
+    }
 }
